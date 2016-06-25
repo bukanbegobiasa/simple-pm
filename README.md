@@ -12,11 +12,12 @@ Many steps to used this application for bootstapping only
       2. Run ```vagrant up ```
       3. Wait until provision done
       4. Run ```vagrant ssh```
-      > If the machine can't provision its self by doing instalation
-      > step just like this. Just in developement uses.
-      > 1. Install ruby version with rbenv 2.3.0p0
-      > 2. Install rails 4.2.6
-      > 3. Install PostgreSQL 9.5
+      
+  > If the machine can't provision its self by doing instalation step just like this. Just in developement uses.
+  > 
+      1. Install ruby version with rbenv 2.3.0p0
+      2. Install rails 4.2.6
+      3. Install PostgreSQL 9.5
 
   - ##### Resolve Dependencies for this Project
     ```bundle exec install```
