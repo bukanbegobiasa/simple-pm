@@ -1,0 +1,18 @@
+.g-project{
+  @include row();
+
+  &__label{
+    @include span-columns(2);
+    font-size: 16px;
+  }
+
+  &__field{
+    @include span-columns(10);
+    font-size: 16px;
+  }
+
+  &__item{
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+}

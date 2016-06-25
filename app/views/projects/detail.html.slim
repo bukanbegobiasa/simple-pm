@@ -1,0 +1,41 @@
+.g-card.g-project
+  header
+    h2
+      = @project.name
+      small
+        = t('project.description')
+  section style="padding:0"
+    .g-tab
+      header
+        ul
+          li#overview
+            = link_to t('project.overview'), project_path(@project)
+          li.active#detail
+            a = t('project.detail')
+          li#job
+            = link_to t('project.job'), project_jobs_path(@project)
+          li#users
+            = link_to t('project.member'), project_user_projects_path(@project)
+      section.main
+        .panel.active#detail
+          .g-project__detail
+            .g-project__detail__item
+              .g-project__label
+                = t('project.name')
+              .g-project__field
+                = @project.name
+            .g-project__detail__item
+              .g-project__label
+                = t('project.start')
+              .g-project__field
+                = @project.start_at.strftime('%d-%m-%Y')
+            .g-project__detail__item
+              .g-project__label
+                = t('project.finish')
+              .g-project__field
+                = @project.finish_at.strftime('%d-%m-%Y')
+            .g-project__detail__item
+              .g-project__label
+                = t('project.price')
+              .g-project__field
+                = number_to_currency(@project.price, unit: 'Rp. ', separator: ',', delimiter: '.')

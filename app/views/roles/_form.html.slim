@@ -1,0 +1,7 @@
+= simple_form_for(@role) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :key
+    = f.input :level
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,13 @@
+p#notice
+  = notice
+p
+  strong
+    | Key:
+  = @role.key
+p
+  strong
+    | Level:
+  = @role.level
+= link_to 'Edit', edit_role_path(@role)
+|  | 
+= link_to 'Back', roles_path

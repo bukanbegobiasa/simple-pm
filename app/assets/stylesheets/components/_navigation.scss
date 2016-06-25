@@ -1,0 +1,48 @@
+.d-navigation{
+  z-index: 11;
+  width: 100%;
+  padding: 0 24px;
+  height: $base-height;
+  background-color: $bluegray;
+
+  &__wrapper{
+    display: flex;
+    float: right;
+
+    &__item{
+      color: $white;
+
+      a{
+        display: block;
+        padding: 14px;
+        height: $base-height;
+        text-transform: uppercase;
+
+        &:hover{
+          background: $transparent-black;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  &__header{
+    float: left;
+
+    a{
+      display: block;
+      padding: 12px;
+      font-size: $font-larger;
+      height: $base-height;
+
+      &:hover{
+        background: $transparent-black;
+        color: $white;
+      }
+    }
+  }
+
+  &__child{
+    display: none;
+  }
+}

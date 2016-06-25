@@ -1,0 +1,19 @@
+.g-card.g-project
+  header
+    h2
+      = @project.name
+      small
+        = t('project.description')
+  section style="padding:0"
+    .g-tab
+      header
+        ul
+          li#overview
+            = link_to 'Overview', project_path(@project)
+          li.active#detail
+            a Detail
+          li#job
+            = link_to 'Job', project_jobs_path(@project)
+          li#users
+            a Users
+      section.main

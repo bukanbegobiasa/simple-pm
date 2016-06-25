@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title Dee
+    meta name="keywords" content="product management system"
+    meta name="author" content="satrio nugroho"
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    = render 'shared/navigation'
+    section.g-outer-container
+      - if notice
+        .g-notification.g-notice
+          .g-notification__message
+            = notice
+          .g-notification__actions
+            a
+              i.zmdi.zmdi-hc-lg.zmdi-close
+      - if alert
+        .g-notification.g-alert
+          .g-notification__message
+            = alert
+          .g-notification__actions
+            a
+              i.zmdi.zmdi-hc-lg.zmdi-close
+      section.g-main
+        = yield
+    = yield :javascript

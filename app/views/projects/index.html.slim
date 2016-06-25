@@ -1,0 +1,21 @@
+.g-card
+  header
+    h2
+      | Projects
+      small
+        | Listing all your projects
+  section
+    table
+      thead
+        tr
+          th Name
+          th Price
+          th Start at
+          th Finish at
+      tbody
+        - @projects.each do |project|
+          tr
+            td = link_to project.name, project
+            td = number_to_currency(project.price, unit: 'Rp. ', separator: ',', delimiter: '.')
+            td = project.start_at.strftime('%d-%m-%Y')
+            td = project.finish_at.strftime('%d-%m-%Y')

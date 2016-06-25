@@ -1,0 +1,24 @@
+//variables
+$black: rgba(0, 0, 0, .8);
+
+.s-row{
+  margin: 0px;
+  padding: 0 8px;
+  margin-top: 8px;
+  margin-bottom: 36px;
+}
+
+.s-description{
+  font-size: 22px;
+  font-weight: 500;
+
+  &__code{
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+}
+
+.s-item{
+  border: $black dashed;
+}

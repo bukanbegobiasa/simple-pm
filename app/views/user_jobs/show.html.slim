@@ -1,0 +1,13 @@
+p#notice
+  = notice
+p
+  strong
+    | User:
+  = @user_job.user
+p
+  strong
+    | Job:
+  = @user_job.job
+= link_to 'Edit', edit_user_job_path(@user_job)
+|  | 
+= link_to 'Back', user_jobs_path

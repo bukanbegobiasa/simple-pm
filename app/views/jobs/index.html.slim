@@ -1,0 +1,47 @@
+.g-card.g-project
+  header
+    h2
+      = @project.name
+      small
+        = t('project.description')
+  section style="padding:0"
+    .g-tab
+      header
+        ul
+          li#overview
+            = link_to t('project.overview'), project_path(@project)
+          li#detail
+            = link_to t('project.detail'), project_detail_path(@project)
+          li.active#job
+            a = t('project.job')
+          li#users
+            = link_to t('project.member'), project_user_projects_path(@project)
+      section.main
+        .panel.active#detail
+          table
+            thead
+              tr
+                th Project
+                th Title
+                th Description
+                th Start at
+                th Finish at
+                th Milestone
+                th Rate
+                th Job status
+                th Active
+                th[colspan="3"]
+            tbody
+              - @jobs.each do |job|
+                tr
+                  td = job.project
+                  td = job.title
+                  td = job.description
+                  td = job.start_at
+                  td = job.finish_at
+                  td = job.milestone
+                  td = job.rate
+                  td = job.job_status
+                  td = job.active
+                  td = link_to 'Show', job
+                  td = link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }

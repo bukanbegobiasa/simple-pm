@@ -1,0 +1,205 @@
+@mixin box-shadow($radius) {
+  -webkit-box-shadow: $radius;
+     -moz-box-shadow: $radius;
+      -ms-box-shadow: $radius;
+          box-shadow: $radius;
+}
+
+body{
+  @include margin(0);
+  background-color: rgb(216, 216, 216);
+}
+
+a{
+  color: $white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.g-main{
+  margin-top: 32px;
+}
+
+.g-outer-container{
+  @include outer-container();
+}
+
+.g-card{
+  width: 100%;
+  background-color: $white;
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+  @include box-shadow(4px 8px 60px -22px rgba(0, 0, 0, 0.2));
+
+  header{
+    color: $white;
+    padding-top: 20px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 8px;
+    background-color: $bluegray;
+    @include border-top-radius(5px);
+
+    h2{
+      font-weight: 300;
+
+      small{
+        display: block;
+        font-size: 12px;
+        margin-top: 4px;
+        font-weight: 100;
+      }
+    }
+  }
+
+  section{
+    padding: 24px 32px;
+  }
+}
+
+.g-modal{
+  left: 0;
+  right: 0;
+  top: 64px;
+  z-index: 12;
+  width: 600px;
+  display: none;
+  margin: 12px auto;
+  position: absolute;
+  background-color: $white;
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+  @include box-shadow(16px 32px 64px -22px rgba(0, 0, 0, 0.4));
+
+  header{
+    display: table-header-group;
+
+    h3{
+      padding: 16px 32px;
+      font-size: 24px;
+      font-weight: 500;
+      text-align: center;
+    }
+  }
+
+  section{
+    display: table-row-group;
+  }
+
+  footer{
+    display: table-footer-group;
+
+    .actions{
+      float: right;
+      padding: 12px 32px;
+    }
+  }
+
+
+  &__main{
+    padding: 0px 32px;
+  }
+}
+
+.g-tab{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  header{
+    height: 40px;
+    background-color: $white;
+
+    ul{
+      display: flex;
+      border-bottom: $more-light-gray 2px solid;
+
+      li.active{
+
+        a{
+          color: $bluegray;
+          border-bottom: $bluegray 2px solid;
+        }
+      }
+
+      li{
+        margin-bottom: -2px;
+
+        a{
+          color: $lighter-gray;
+          display: block;
+          padding: 12px 24px;
+          padding-bottom: 8px;
+        }
+      }
+    }
+  }
+
+  section.main{
+    margin-top: 24px;
+    padding: 16px 24px;
+
+    .panel{
+      margin: 0;
+      padding: 0;
+      display: none;
+    }
+
+    .active{
+      display: block;
+    }
+  }
+}
+
+.overlay{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  overflow: hidden;
+  position: absolute;
+  background-color: $transparent-black;
+}
+
+.half{
+  @include span-columns(6);
+}
+
+.g-alert{
+  color: $white;
+  background-color: $light-red;
+}
+
+.g-notice{
+  color: $white;
+  background-color: $bluegray;
+}
+
+.g-notification{
+  margin: 0;
+  margin-top: 24px;
+  margin-bottom: 28px;
+  @include row();
+  padding: 16px 28px;
+  @include border-top-radius(4px);
+  @include border-bottom-radius(4px);
+
+
+  &__message{
+    float: left;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  &__actions{
+    float: right;
+
+    a{
+      color: $light-white;
+
+      &:hover{
+        color: $white;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.g-card.g-sign_up
+  header
+    h2
+      = t('sign_up.title')
+      small
+        = t('sign_up.description')
+  main
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      .g-row
+        .g-sign_up__label
+          = f.label :email, t('sign_up.email')
+        .g-sign_up__field
+          = f.email_field :email, autofocus: true
+      .g-row
+        .g-sign_up__label
+          = f.label :password, t('sign_up.password')
+        .g-sign_up__field
+          = f.password_field :password, autocomplete: "off"
+      .g-row
+        .g-sign_up__label
+          = f.label :password_confirmation, t('sign_up.confirmation')
+        .g-sign_up__field
+          = f.password_field :password_confirmation, autocomplete: "off"
+      .g-row
+        .g-sign_up__label
+          = f.label :username, t('sign_up.username')
+        .g-sign_up__field
+          = f.text_field :username, autocomplete: "off"
+      .g-row
+        .g-sign_up__label
+          = f.label :fullname, t('sign_up.fullname')
+        .g-sign_up__field
+          = f.text_field :fullname, autocomplete: "off"
+      .g-row
+        .g-sign_up__label
+          = f.label :gender, t('sign_up.gender')
+        .g-sign_up__field
+          .g-sign_up__field__gender
+            .g-sign_up__field__gender__radio
+              = f.radio_button :gender, 1
+            .g-sign_up__field__gender__label = t('sign_up.men')
+          .g-sign_up__field__gender
+            .g-sign_up__field__gender__radio
+              = f.radio_button :gender, 1
+            .g-sign_up__field__gender__label = t('sign_up.women')
+      .g-row
+        .g-sign_up__actions
+          = f.submit t('sign_up.submit')

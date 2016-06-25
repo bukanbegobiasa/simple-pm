@@ -1,0 +1,30 @@
+.g-card.g-sign_in
+  header
+    h2
+      = t('sign_in.title')
+      small
+        = t('sign_in.description')
+  main
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .g-row
+        .g-sign_in__label
+          = f.label :email, t('sign_in.email')
+        .g-sign_in__field
+          = f.email_field :email, autofocus: true, autocomplete: "off"
+      .g-row
+        .g-sign_in__label
+          = f.label :password, t('sign_in.password')
+        .g-sign_in__field
+          = f.password_field :password, autocomplete: "off"
+      - if devise_mapping.rememberable?
+        .g-row
+          .g-sign_in__label
+          .g-sign_in__field
+            = f.check_box :remember_me, style: "float:left"
+            = f.label :remember_me, t('sign_in.remember_me')
+      .g-row
+        .g-sign_in__actions
+          = f.submit t('sign_in.submit')
+    .g-row
+      .g-sign_in__link
+        = link_to t('sign_in.reset_password'), new_user_password_path

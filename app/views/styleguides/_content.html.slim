@@ -1,0 +1,63 @@
+.s-row
+  .s-description
+    | Navbar
+    .s-description__code
+      | .d-navigation > .d-navigation__header >> a > ul.d-navigation__wrapper >> li.d-navigation__wrapper__item dropdown
+  .s-navbar.s-item
+    = render 'shared/navigation'
+
+.s-row
+  .s-description
+    | Card
+    .s-description__code
+      | .g-card > header >> h2 >>> The title >>> small >>>> The Description > main >> The Content
+  .s-navbar.s-item
+    .g-card
+      header
+        h2
+          | The title
+          small
+            | The Description
+      main
+        | The Content
+
+.s-row
+  .s-description
+    | Modal
+    .s-description__code
+      | .g-modal > header >> .g-modal__header >>> title > main >> .g-modal__main >>> isi > footer >> .actions >>> footer
+  .s-navbar.s-item
+    .g-modal style="display:table;position:static"
+      header
+        h3
+          | The title
+      main
+        .g-modal__main
+          | The content
+      footer
+        .actions
+          | Actions
+
+.s-row
+  .s-description
+    | Table
+    .s-description__code
+      | 
+  .s-navbar.s-item
+    = render 'columns'
+
+.s-row
+  .s-description
+    | Tab
+    .s-description__code
+      | 
+  .s-navbar.s-item style="background: #FFFFFF"
+    = render 'tab'
+
+.s-row
+  .s-description
+    | Alert
+    .s-description__code
+      | 
+  .s-navbar.s-item
+    = render 'alert'

@@ -1,0 +1,41 @@
+p#notice
+  = notice
+p
+  strong
+    | Project:
+  = @job.project
+p
+  strong
+    | Title:
+  = @job.title
+p
+  strong
+    | Description:
+  = @job.description
+p
+  strong
+    | Start at:
+  = @job.start_at
+p
+  strong
+    | Finish at:
+  = @job.finish_at
+p
+  strong
+    | Milestone:
+  = @job.milestone
+p
+  strong
+    | Rate:
+  = @job.rate
+p
+  strong
+    | Job status:
+  = @job.job_status
+p
+  strong
+    | Active:
+  = @job.active
+= link_to 'Edit', edit_job_path(@job)
+|  | 
+= link_to 'Back', jobs_path

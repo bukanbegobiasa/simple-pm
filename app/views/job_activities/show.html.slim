@@ -1,0 +1,17 @@
+p#notice
+  = notice
+p
+  strong
+    | Job:
+  = @job_activity.job
+p
+  strong
+    | Name:
+  = @job_activity.name
+p
+  strong
+    | Active:
+  = @job_activity.active
+= link_to 'Edit', edit_job_activity_path(@job_activity)
+|  | 
+= link_to 'Back', job_activities_path

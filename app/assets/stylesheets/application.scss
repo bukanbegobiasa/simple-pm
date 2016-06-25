@@ -1,0 +1,17 @@
+@import "bourbon";
+@import "neat";
+@import "base/base";
+@import "components/base";
+@import "iconic";
+
+body{
+  @include margin(0);
+}
+
+.container{
+  @include outer-container();
+}
+
+.wrapper {
+  @include clearfix;
+}

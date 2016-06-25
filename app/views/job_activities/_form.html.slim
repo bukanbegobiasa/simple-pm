@@ -1,0 +1,8 @@
+= simple_form_for(@job_activity) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.association :job
+    = f.input :name
+    = f.input :active
+  .form-actions
+    = f.button :submit
