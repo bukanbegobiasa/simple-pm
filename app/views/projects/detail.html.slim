@@ -28,14 +28,14 @@
               .g-project__label
                 = t('project.start')
               .g-project__field
-                = @project.start_at.strftime('%d-%m-%Y')
+                = indonesian_time(@project.start_at)
             .g-project__detail__item
               .g-project__label
                 = t('project.finish')
               .g-project__field
-                = @project.finish_at.strftime('%d-%m-%Y')
+                = indonesian_time(@project.finish_at)
             .g-project__detail__item
               .g-project__label
                 = t('project.price')
               .g-project__field
-                = number_to_currency(@project.price, unit: 'Rp. ', separator: ',', delimiter: '.')
+                = rupiah(@project.price)

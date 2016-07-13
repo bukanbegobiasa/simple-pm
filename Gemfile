@@ -22,6 +22,7 @@ group :development, :test do
   gem 'refills'
   gem 'rails-erd'
   gem 'railroady'
+  gem 'thin'
   gem 'rails_db', 	      '1.1.1'
   gem 'byebug',               '8.2.4'
   gem 'web-console',          '2.3.0'

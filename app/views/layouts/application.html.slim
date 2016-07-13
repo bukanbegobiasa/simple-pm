@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Dee
+    title = title(yield :title)
     meta name="keywords" content="product management system"
     meta name="author" content="satrio nugroho"
     = stylesheet_link_tag    "application", :media => "all"
@@ -27,4 +27,5 @@ html
               i.zmdi.zmdi-hc-lg.zmdi-close
       section.g-main
         = yield
+    #modal-reload
     = yield :javascript

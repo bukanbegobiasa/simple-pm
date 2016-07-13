@@ -1,14 +1,34 @@
-= simple_form_for(@job) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.association :project
-    = f.input :title
-    = f.input :description
-    = f.input :start_at
-    = f.input :finish_at
-    = f.input :milestone
-    = f.input :rate
-    = f.association :job_status
-    = f.input :active
-  .form-actions
-    = f.button :submit
+= form_for(@job, url: project_jobs_path) do |f|
+  = f.hidden_field :project_id, value: @project.id
+  - if @project.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@project.errors.count, "error")
+        |  prohibited this project from being saved:
+      ul
+        - @project.errors.full_messages.each do |message|
+          li
+            = message
+  .g-row.g-new_job
+    .g-new_job__label
+      = f.label :title
+    .g-new_job__field
+      = f.text_field :title
+  .g-row.g-new_job
+    .g-new_job__label
+      = f.label :description
+    .g-new_job__field
+      = f.text_area :description
+  .g-row.g-new_job
+    .g-new_job__label
+      = f.label :start_at
+    .g-new_job__field
+      = f.date_field :start_at
+  .g-row.g-new_job
+    .g-new_job__label
+      = f.label :finish_at
+    .g-new_job__field
+      = f.date_field :finish_at
+  .g-row.g-new_job
+    .g-new_job__action
+      = f.submit

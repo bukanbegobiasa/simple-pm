@@ -4,7 +4,7 @@
       = t('sign_in.title')
       small
         = t('sign_in.description')
-  main
+  section
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .g-row
         .g-sign_in__label

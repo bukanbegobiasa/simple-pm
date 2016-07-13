@@ -3,7 +3,8 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
-    @jobs = Job.all
+    @job = Job.new
+    @jobs = Job.eager_load(:job_status).where(project_id: @project.id)
   end
 
   def show
@@ -21,10 +22,10 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
+        format.html { redirect_to project_jobs_path, notice: 'Job was successfully created.' }
         format.json { render :show, status: :created, location: @job }
       else
-        format.html { render :new }
+        format.html { redirect_to project_jobs_path, notice: 'unsuc' }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end

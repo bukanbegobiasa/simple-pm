@@ -22,10 +22,20 @@
 en:
   hello: "Hello world"
 
+  master:
+      role:
+        qa:         Quality Assurance
+        dba:        Database Administrator
+        owner:      Owner
+        manager:    Product Manager
+        analyst:    System Analyst
+        developer:  Developer
+
   navbar:
     sign_up:      Sign Up
     sign_in:      Sign In
     sign_out:     Log out
+    project:      Add Project
 
   sign_in:
     title:            Login Page
@@ -54,3 +64,12 @@ en:
     detail:       Details
     member:       Members
     overview:     Overview
+
+  user_project:
+    email_placeholder:    Input email or username
+    role_placeholder:     Input role of user
+
+  modal:
+    submit:       Submit
+    cancel:       Cancel
+

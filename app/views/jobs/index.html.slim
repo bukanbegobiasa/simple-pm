@@ -18,30 +18,21 @@
             = link_to t('project.member'), project_user_projects_path(@project)
       section.main
         .panel.active#detail
-          table
-            thead
-              tr
-                th Project
-                th Title
-                th Description
-                th Start at
-                th Finish at
-                th Milestone
-                th Rate
-                th Job status
-                th Active
-                th[colspan="3"]
-            tbody
-              - @jobs.each do |job|
+          section.g-jobs-new
+            = render 'new' if @project.owner?(current_user)
+          section.g-jobs-list
+            table
+              thead
                 tr
-                  td = job.project
-                  td = job.title
-                  td = job.description
-                  td = job.start_at
-                  td = job.finish_at
-                  td = job.milestone
-                  td = job.rate
-                  td = job.job_status
-                  td = job.active
-                  td = link_to 'Show', job
-                  td = link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }
+                  th Title
+                  th Description
+                  th Start At
+                  th Finish At
+              tbody
+                - @jobs.each do |job|
+                  tr
+                    td = link_to job.title, project_job_path(@project, job)
+                    td = job.description
+                    td = job.start_at
+                    td = job.finish_at
+

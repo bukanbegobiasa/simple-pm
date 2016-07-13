@@ -1,8 +1,80 @@
-= simple_form_for(@user_project) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.association :user
-    = f.input :project
-    = f.association :role
-  .form-actions
-    = f.button :submit
+= form_for(@user_project, url: project_user_projects_path) do |f|
+  = f.hidden_field :project_id, value: @project.id
+  - if @project.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@project.errors.count, "error")
+        |  prohibited this project from being saved:
+      ul
+        - @project.errors.full_messages.each do |message|
+          li
+            = message
+  .g-row.g-new_user_project
+    .g-new_user_project__label
+      = f.label :user_id
+    .g-new_user_project__field
+      = f.select :user_id, options_for_select([""], "")
+  .g-row.g-new_user_project
+    .g-new_user_project__label
+      = f.label :role_id
+    .g-new_user_project__field
+      = f.select :role_id, options_for_select([""], "")
+  .g-row.g-new_user_project
+    .g-new_user_project__actions
+      = f.button :submit
+
+javascript:
+  var roles = JSON.parse('#{raw @roles}');
+  $('#user_project_role_id').select2({
+    placeholder: '#{ t("user_project.role_placeholder") }',
+    allowClear: true,
+    data: roles
+  });
+
+  function formatRepoSelection (repo) {
+    if (repo.username == undefined && repo.email == undefined) return '#{ t("user_project.email_placeholder") }';
+    return "<option id="+ repo.id +">" + repo.username + " [ " + repo.email + " ] </option>";
+  }
+
+  function formatRepo (repo) {
+    if (repo.loading) return repo.text;
+    var markup = "<div class='select2-result-repository clearfix'>" +
+       "<div class='select2-result-repository__avatar'><strong>"+ repo.username +"</strong></div>" +
+       "<div class='select2-result-repository__meta'>" +
+       "<div class='select2-result-repository__title'>" + repo.email + "</div>";
+       "</div></div>";
+    return markup;
+  }
+
+
+  $('#user_project_user_id').select2({
+    ajax: {
+      url: "#{user_search_url @project}",
+      dataType: 'json',
+      delay: 500,
+      data: function (search) {
+        return {
+          search: search
+        };
+      },
+      processResults: function (data) {
+        $('select2-user_project_user_id-container')
+        return {
+          results: $.map(data, function(item){
+            return {
+              username: item.username,
+              email: item.email,
+              id: item.id
+            }
+          })
+        };
+      },
+      cache: true
+    },
+    escapeMarkup: function (markup) { return markup; },
+    minimumInputLength: 3,
+    templateResult: formatRepo,
+    templateSelection: formatRepoSelection,
+    allowClear: true,
+    placeholder: '#{ t("user_project.email_placeholder") }',
+  });

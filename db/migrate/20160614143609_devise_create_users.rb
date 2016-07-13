@@ -31,10 +31,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
       ## Add additional data
-      t.string :username
-      t.string :fullname
-      t.string :initial
-      t.boolean :gender
+      t.string :username,   null: false
+      t.string :fullname,   null: false
+      t.string :initial,    null: false
+      t.boolean :gender,    null: false
 
 
       t.timestamps

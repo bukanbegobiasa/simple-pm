@@ -9,6 +9,9 @@ header.d-navigation
         = link_to t('navbar.sign_up'), new_user_registration_path
     - if user_session
       li.d-navigation__wrapper__item
+        a#new-project onclick="return false" data-url=new_project_url
+          = t('navbar.project')
+      li.d-navigation__wrapper__item
         = link_to t('navbar.sign_out'), destroy_user_session_path, method: :delete
         /ul.d-navigation__child
         /  li

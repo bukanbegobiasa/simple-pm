@@ -9,7 +9,6 @@ before_filter :configure_account_update_params, only: [:update]
 
   # POST /resource
   def create
-    debugger
     super
   end
 

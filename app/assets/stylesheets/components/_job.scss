@@ -1,0 +1,28 @@
+.g-new_job{
+
+  &__label{
+    @include span-columns(3);
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  &__field{
+    @include span-columns(9);
+    @include omega();
+
+    input, textarea{
+      @include span-columns(8);
+    }
+  }
+
+  &__action{
+    @include span-columns(3);
+    @include shift(7.5);
+    @include omega();
+  }
+}
+
+.g-jobs-list{
+  margin-top: 16px;
+  display: inline-block;
+}

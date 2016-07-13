@@ -8,25 +8,25 @@
         - @project.errors.full_messages.each do |message|
           li
             = message
-  .field
-    = f.label :name
-    br
-    = f.text_field :name
-  .field
-    = f.label :price
-    br
-    = f.text_field :price
-  .field
-    = f.label :start_at
-    br
-    = f.datetime_select :start_at
-  .field
-    = f.label :finish_at
-    br
-    = f.datetime_select :finish_at
-  .field
-    = f.label :active
-    br
-    = f.check_box :active
-  .actions
-    = f.submit
+  .g-row
+    .g-new_project__label
+      = f.label :name
+    .g-new_project__field
+      = f.text_field :name
+  .g-row
+    .g-new_project__label
+      = f.label :price
+    .g-new_project__field
+      = f.text_field :price
+  .g-row
+    .g-new_project__label
+      = f.label :start_at
+    .g-new_project__field
+      = f.date_field :start_at
+  .g-row
+    .g-new_project__label
+      = f.label :finish_at
+    .g-new_project__field
+      = f.date_field :finish_at
+  .actions style="display:none"
+    = f.submit 'submit', id: 'send'

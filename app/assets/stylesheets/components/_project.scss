@@ -11,8 +11,24 @@
     font-size: 16px;
   }
 
-  &__item{
-    padding-top: 16px;
-    padding-bottom: 24px;
+  &__detail{
+
+    &__item{
+      padding-top: 16px;
+      padding-bottom: 24px;
+    }
+  }
+}
+
+.g-new_project{
+
+  &__label{
+    @include span-columns(3);
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  &__field{
+    @include span-columns(9);
   }
 }

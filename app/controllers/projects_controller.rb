@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     render 'landing/home' unless current_user
-    @projects = Project.all
+    @projects = current_user.projects if current_user
   end
 
   def show
@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    render layout: false
   end
 
   def edit
@@ -24,8 +25,8 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+      if @project.save_all current_user
+        format.html { redirect_to root_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
