@@ -1,4 +1,5 @@
 class JobActivitiesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_projecet, :set_job
   before_action :set_job_activity, only: [:show, :edit, :update, :destroy]
 
