@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :price,        null: false,    default: 0
       t.datetime :start_at,   null: false
       t.datetime :finish_at,  null: false
-      t.boolean :active,      null: false,    default: 1
+      t.boolean :active,      null: false,    default: true
 
       t.timestamps null: false
     end

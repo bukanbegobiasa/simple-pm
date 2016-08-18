@@ -18,10 +18,11 @@ ActiveRecord::Schema.define(version: 20160622205323) do
 
   create_table "job_activities", force: :cascade do |t|
     t.integer  "job_id"
-    t.string   "name"
-    t.boolean  "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                      null: false
+    t.boolean  "active",     default: true, null: false
+    t.integer  "created_by",                null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "job_activities", ["job_id"], name: "index_job_activities_on_job_id", using: :btree
@@ -34,29 +35,29 @@ ActiveRecord::Schema.define(version: 20160622205323) do
 
   create_table "jobs", force: :cascade do |t|
     t.integer  "project_id"
-    t.string   "title"
-    t.text     "description"
-    t.datetime "start_at"
-    t.datetime "finish_at"
-    t.integer  "milestone"
-    t.integer  "rate"
+    t.string   "title",         default: "",   null: false
+    t.text     "description",   default: "",   null: false
+    t.datetime "start_at",                     null: false
+    t.datetime "finish_at",                    null: false
+    t.integer  "milestone",     default: 0,    null: false
+    t.integer  "rate",          default: 0,    null: false
     t.integer  "job_status_id"
-    t.boolean  "active"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.boolean  "active",        default: true, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "jobs", ["job_status_id"], name: "index_jobs_on_job_status_id", using: :btree
   add_index "jobs", ["project_id"], name: "index_jobs_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.string   "price"
-    t.datetime "start_at"
-    t.datetime "finish_at"
-    t.boolean  "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                      null: false
+    t.string   "price",      default: "0",  null: false
+    t.datetime "start_at",                  null: false
+    t.datetime "finish_at",                 null: false
+    t.boolean  "active",     default: true, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -68,10 +69,11 @@ ActiveRecord::Schema.define(version: 20160622205323) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "job_id"
-    t.string   "name"
-    t.boolean  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       default: "",   null: false
+    t.boolean  "status",     default: true, null: false
+    t.integer  "created_by",                null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "tasks", ["job_id"], name: "index_tasks_on_job_id", using: :btree
@@ -109,10 +111,10 @@ ActiveRecord::Schema.define(version: 20160622205323) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "username"
-    t.string   "fullname"
-    t.string   "initial"
-    t.boolean  "gender"
+    t.string   "username",                            null: false
+    t.string   "fullname",                            null: false
+    t.string   "initial",                             null: false
+    t.boolean  "gender",                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

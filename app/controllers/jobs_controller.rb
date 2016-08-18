@@ -1,11 +1,10 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_project
+  before_action :authenticate_user!, :authenticate_project!
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
     @job = Job.new
-    @jobs = Job.eager_load(:job_status).where(project_id: @project.id)
+    @jobs = Job.eager_load(:job_status, :activity).where(project_id: params[:project_id])
   end
 
   def show
@@ -23,7 +22,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to project_jobs_path, notice: 'Job was successfully created.' }
+        format.html { redirect_to project_jobs_path, notice: t('jobs.notice.create') }
         format.json { render :show, status: :created, location: @job }
       else
         format.html { redirect_to project_jobs_path, notice: 'unsuc' }
@@ -35,7 +34,7 @@ class JobsController < ApplicationController
   def update
     respond_to do |format|
       if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
+        format.html { redirect_to @job, notice: t('jobs.notice.update') }
         format.json { render :show, status: :ok, location: @job }
       else
         format.html { render :edit }
@@ -47,18 +46,14 @@ class JobsController < ApplicationController
   def destroy
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
+      format.html { redirect_to jobs_url, notice: t('jobs.notice.destroy') }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_project
-      @project = Project.find(params[:project_id])
-    end
-
     def set_job
-      @job = Job.find(params[:id])
+      @job = Job.eager_load(:project, :activity).find(params[:job_id])
     end
 
     def job_params

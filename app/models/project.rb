@@ -10,13 +10,16 @@ class Project < ActiveRecord::Base
   validates :active, presence: true, on: :update
   validate :finish_must_be_end
 
-
   def save_all(user)
     self.save and UserProject.create_new({project_id: self.id, user_id: user.id })
   end
 
   def owner?(user)
     return self.user_projects.find_by(user_id: user.id, role_id: 1).present?
+  end
+
+  def self.authenticate!(project_id)
+    return self.where(id: project_id).present?
   end
 
   private

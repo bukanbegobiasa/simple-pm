@@ -26,3 +26,15 @@
   margin-top: 16px;
   display: inline-block;
 }
+
+.g-job{
+  @include row();
+
+  &__activity{
+    @include span-columns(6);
+  }
+
+  &__description{
+    @include span-columns(6);
+  }
+}

@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     current_user.present?
   end
+
+  def authenticate_project!
+    Project.authenticate!(params[:project_id])
+  end
 end
