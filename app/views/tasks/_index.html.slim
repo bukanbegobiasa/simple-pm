@@ -1,0 +1,16 @@
+table
+  thead
+    tr
+      th = t('task.no')
+      th = t('task.job')
+      th = t('task.name')
+      th = t('task.status')
+  tbody
+    - i = 1
+    = @job.tasks.each do |task|
+      tr
+        td = i
+        td = task.job
+        td = task.name
+        td = task.status
+      - i += 1
