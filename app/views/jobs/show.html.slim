@@ -1,13 +1,60 @@
-.g-card.g-project
-  header
-    h2
-      = job_title(@job.title)
-  section.g-job
-    .g-job__description
-      table
-        tbody
-          tr
-            th Title
-            td = @job.title
+.g-job
+  .g-card.g-job__description
+    header
+      h2
+        = job_title(@job.title)
+    section.g-job
+      .g-job__items
+        .g-job__description__title
+          strong = t('job.title')
+        .g-job__description__content
+          = @job.title
+      .g-job__items
+        .g-job__description__title
+          strong = t('job.description')
+        .g-job__description__content
+          = @job.description
+      .g-job
+        .g-job__half.g-job__items
+          .g-job__description__title
+            strong = t('job.start_at')
+          .g-job__description__content
+            = indonesian_time(@job.start_at)
+        .g-job__half.g-job__items
+          .g-job__description__title
+            strong = t('job.finish_at')
+          .g-job__description__content
+            = indonesian_time(@job.finish_at)
+      .g-job
+        .g-job__half
+          .g-job__description__title
+            strong = t('job.status')
+          .g-job__description__content
+            = t(@job.job_status.key)
+        .g-job__half
+          .g-job__description__title
+            strong = t('job.milestone')
+          .g-job__description__content
+            = @job.milestone
 
-    .g-job__activity
+    hr style="width:95%; margin-left: auto; margin-right: auto;"
+
+    .p-bottom
+      .g-task
+        h2
+          = t('task.preambule')
+        .g-task__new
+          = render 'tasks/new' if @project.owner?(current_user) or @project.manager?(current_user)
+        .g-task__index
+          = render 'tasks/index'
+
+
+  .g-card.g-job__activity
+    header
+      h2
+        = t ('job.activity')
+    section.g-job
+      .g-job__activity__content
+        = render 'activity'
+      .g-job__activity__form
+        = render 'form_activity'

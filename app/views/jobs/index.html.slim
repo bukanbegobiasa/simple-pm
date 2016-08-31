@@ -1,7 +1,7 @@
 .g-card.g-project
   header
     h2
-      = @job.project.name
+      = @project.name
       small
         = t('project.description')
   section style="padding:0"
@@ -18,21 +18,24 @@
             = link_to t('project.member'), project_user_projects_path(@project)
       section.main
         .panel.active#detail
-          section.g-jobs-new
-            = render 'new' if @project.owner?(current_user)
+          - if @project.owner?(current_user) or @project.manager?(current_user)
+            section.g-jobs-new
+              = render 'new'
           section.g-jobs-list
             table
               thead
                 tr
                   th Title
                   th Description
+                  th Assign at
                   th Start At
                   th Finish At
               tbody
                 - @jobs.each do |job|
                   tr
                     td = link_to job.title, project_job_path(@project, job)
-                    td = job.description
-                    td = job.start_at
-                    td = job.finish_at
+                    td = job.description.truncate(30)
+                    td = user_assignment(job)
+                    td = indonesian_time(job.start_at)
+                    td = indonesian_time(job.finish_at)
 
