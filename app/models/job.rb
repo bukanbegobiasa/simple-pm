@@ -24,9 +24,14 @@ class Job < ActiveRecord::Base
   validates :job_status, presence: true, on: :update
   validates :active, presence: true, on: :update
 
+  # Delegates
+  delegate :name, to: :project, prefix: true, allow_nil: true
+
+  # Scopes
   scope :active, ->{
     where(active: true)
   }
+
 
   private
 

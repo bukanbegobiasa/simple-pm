@@ -21,11 +21,9 @@ class JobActivitiesController < ApplicationController
 
     respond_to do |format|
       if @job_activity.save
-        format.html { redirect_to @job_activity, notice: t('job_activities.notice.save') }
-        format.json { render :show, status: :created, location: @job_activity }
+        format.html { redirect_to :back, notice: t('job_activities.notice.save') }
       else
-        format.html { render :new }
-        format.json { render json: @job_activity.errors, status: :unprocessable_entity }
+        format.html { redirect_to :back, notice: t('job_activities.notice.fail') }
       end
     end
   end
@@ -56,6 +54,6 @@ class JobActivitiesController < ApplicationController
     end
 
     def job_activity_params
-      params.require(:job_activity).permit(:job_id, :name, :active)
+      params.require(:job_activity).permit(:job_id, :name, :created_by)
     end
 end

@@ -19,4 +19,8 @@ class UserProject < ActiveRecord::Base
 
     user_project.save
   end
+
+  def self.auth?(user, role)
+    return self.find_by(user_id: user, role_id: role).present?
+  end
 end

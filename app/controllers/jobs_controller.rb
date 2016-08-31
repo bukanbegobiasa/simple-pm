@@ -8,6 +8,8 @@ class JobsController < ApplicationController
   end
 
   def show
+    @job_activity = JobActivity.new
+    @task = @job.tasks
   end
 
   def new
@@ -53,7 +55,7 @@ class JobsController < ApplicationController
 
   private
     def set_job
-      @job = Job.eager_load(:project, :activity).find(params[:job_id])
+      @job = Job.eager_load(:project, :activity).find(params[:id])
     end
 
     def job_params

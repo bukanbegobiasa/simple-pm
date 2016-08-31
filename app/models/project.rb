@@ -15,7 +15,11 @@ class Project < ActiveRecord::Base
   end
 
   def owner?(user)
-    return self.user_projects.find_by(user_id: user.id, role_id: 1).present?
+    return self.user_projects.auth?(user.id, 1)
+  end
+
+  def manager?(user)
+    return self.user_projects.auth?(user.id, 2)
   end
 
   def self.authenticate!(project_id)
