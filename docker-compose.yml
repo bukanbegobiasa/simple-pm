@@ -1,0 +1,28 @@
+version: "2"
+services:
+  dee_volume:
+    image: alpine:3.4
+    container_name: dee_volume
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+      - .:/root/code
+    command: ["/bin/sh"]
+    tty: true
+  dee_database:
+    image: postgres:9.5-alpine
+    container_name: dee_database
+    environment:
+      - POSTGRES_USERNAME=dee
+      - POSTGRES_PASSWORD=dee
+      - POSTGRES_DATABASE=dee_development
+    volumes_from:
+      - dee_volume
+    tty: true
+  dee_code:
+    image: rails:4.2.6-alpine
+    container_name: dee_code
+    volumes_from:
+      - dee_volume
+    ports:
+      - 54312:3000
+    tty: true
