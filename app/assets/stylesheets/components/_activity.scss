@@ -1,0 +1,49 @@
+.g-activity{
+  @include row();
+
+  &__wrapper{
+    @include row();
+  }
+
+  &__actions{
+    display: flex;
+
+    &__edit{
+      margin-right: 12px;
+      margin-top: -4px;
+
+      & > a{
+        color: #AFAFAF;
+        font-size: 12px;
+
+        &:hover{
+          color: #8E8E8E;
+        }
+      }
+    }
+
+    &__delete{
+      margin-top: -4px;
+
+      & > a{
+        color: #AFAFAF;
+        font-size: 12px;
+
+        &:hover{
+          color: #8E8E8E;
+        }
+      }
+    }
+  }
+
+  &__items{
+    @include row();
+    margin-bottom: 20px;
+
+    &__username{
+      font-weight: 600;
+    }
+  }
+}
+
+

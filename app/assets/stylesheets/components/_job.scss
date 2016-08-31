@@ -28,13 +28,24 @@
 }
 
 .g-job{
+  @include fill_parent();
   @include row();
+  margin-bottom: -16px;
 
-  &__activity{
+  &__items{
+    margin-bottom: 20px;
+  }
+
+  &__half{
     @include span-columns(6);
   }
 
+  &__activity{
+    @include span-columns(4.5);
+  }
+
   &__description{
-    @include span-columns(6);
+    @include span-columns(7.6);
+    margin-right: 1%;
   }
 }
