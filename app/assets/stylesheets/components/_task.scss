@@ -1,0 +1,80 @@
+.g-task{
+  @include row();
+
+  &__new{
+    @include row();
+
+    &__label{
+      @include span-columns(3);
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    &__field{
+      @include span-columns(6);
+      @include omega();
+    }
+  }
+
+  &__label{
+    @include span-columns(3.5);
+    text-align: right;
+    font-weight: 600;
+  }
+
+  &__content{
+    @include span-columns(8.5);
+  }
+
+  &__half{
+    @include shift(1.5);
+    @include span-columns(9);
+  }
+
+  &__flag-new{
+    @include row();
+
+    &__title{
+      @include span-columns(10);
+    }
+
+    &__action{
+        @include span-columns(1);
+        text-align: right;
+
+        &__button{
+          border: 0;
+          color: #fff;
+          width: 112px;
+          display: block;
+          line-height: 1;
+          cursor: pointer;
+          appearance: none;
+          font-weight: 600;
+          user-select: none;
+          text-align: center;
+          white-space: nowrap;
+          text-decoration: none;
+          vertical-align: middle;
+          font-size: $base-font-size;
+          background-color: $bluegray;
+          font-family: $base-font-family;
+          border-radius: $base-border-radius;
+          -webkit-font-smoothing: antialiased;
+          padding: $small-spacing $base-spacing;
+          transition: background-color $base-duration $base-timing;
+
+          &:hover,
+          &:focus {
+            color: #fff;
+            background-color: shade($action-color, 20%);
+          }
+        }
+    }
+  }
+
+  &__separator{
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+}

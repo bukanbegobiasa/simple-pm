@@ -3,6 +3,7 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.belongs_to :job,      index: true, foreign_key: true
       t.string :name,         null: false, default: ''
+      t.string :description,  null: false, default: ''
       t.boolean :status,      null: false, default: true
       t.integer :created_by,  null: false
 

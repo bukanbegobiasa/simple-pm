@@ -1,3 +1,11 @@
-h1
-  | New Job
-= render 'form'
+.g-job__new
+  .g-job__new__title
+    .g-job__new__title__text
+      h4 style="margin:0" New Job
+    .g-job__new__title__action
+      a href="#expand" onclick="toogle_new_job(); return false;" Expand
+
+  hr.g-job__new__separator
+
+  .g-job__new__expanded#new_job
+    = render 'form'

@@ -1,3 +1,11 @@
-h1
-  | New User Project
-= render 'form'
+.g-user_project__new
+  .g-user_project__new__title
+    .g-user_project__new__title__text
+      h4 style="margin:0" = t('user_project.new_title')
+    .g-user_project__new__title__action
+      = generate_new_user
+
+  hr.g-user_project__new__separator
+
+  .g-user_project__new__expanded#new_user_project
+    = render 'form'

@@ -15,3 +15,14 @@
 //= require turbolinks
 //= require select2
 //= require_tree .
+//
+
+function remove_notification(){
+  var el = document.getElementById('notification');
+  setTimeout(function(){
+    el.style.display = 'none';
+  }, 500);
+  setTimeout(function(){
+    el.parentNode.removeChild(el);
+  }, 1000);
+}

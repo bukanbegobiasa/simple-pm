@@ -1,8 +1,21 @@
-= simple_form_for(@job_activity) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.association :job
-    = f.input :name
-    = f.input :active
-  .form-actions
-    = f.button :submit
+= form_for(@job_activity, url: project_job_job_activity_path) do |f|
+  = f.hidden_field :project_id, value: @project.id
+  = f.hidden_field :job_id, value: @job.id
+
+  - if @project.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@project.errors.count, "error")
+        |  prohibited this project from being saved:
+      ul
+        - @project.errors.full_messages.each do |message|
+          li
+            = message
+  .g-row
+    .g-activity
+      .g-activity__label
+        = f.label :name
+      .g-activity__field
+        = f.text_area :name
+    .g-activity#submit_btn
+      = f.submit t('submit'), id: 'send'

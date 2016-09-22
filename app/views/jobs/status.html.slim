@@ -1,0 +1,40 @@
+.g-modal#modal
+  .g-modal__container
+    header
+      h3 = t('job.milestone')
+    main
+      .g-modal__main
+        = form_for(@job, url: project_job_status_path(@project, @job)) do |f|
+          - if @job.errors.any?
+            #error_explanation
+              h2 = pluralize(@project.errors.count, "error")
+                |  prohibited this project from being saved:
+              ul
+                - @project.errors.full_messages.each do |message|
+                  li
+                    = message
+          .g-row
+            .g-job__update__milestone__label
+              = f.label :status, t('job.status')
+            .g-job__update__milestone__field
+              = f.select :status, options_for_select(@status)
+          .g-row style="display:none"
+            .g-job__update__milestone__field
+              = f.submit "submit", id: "send"
+    footer
+      .actions
+        a#submit
+          = t('modal.submit')
+        a#cancel
+          = t('modal.cancel')
+
+javascript:
+  $('#submit').on('click', function(){
+    $('#send').click();
+  });
+
+  $('#cancel').on('click', function(){
+    $('#modal').fadeOut('slow', function(){
+      $('#modal-reload').empty();
+    });
+  });

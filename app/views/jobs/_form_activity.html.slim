@@ -1,6 +1,6 @@
 = form_for(@job_activity, url: project_job_job_activities_path(@project, @job)) do |f|
   = f.hidden_field :project_id, value: @project.id
-  = f.hidden_field :created_by, value: @current_user.id
+  = f.hidden_field :created_by, value: current_user.id
   = f.hidden_field :job_id, value: @job.id
   - if @project.errors.any?
     #error_explanation
@@ -13,6 +13,6 @@
             = message
 
   .g-row.g-new_activity
-    = f.text_field :name
+    = f.text_area :name, placeholder: t('form.job_activities.name')
   .g-row.g-submit
-    = f.button :submit
+    = f.submit t('form.job_activities.submit')

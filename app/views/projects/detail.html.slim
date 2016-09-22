@@ -6,7 +6,7 @@
         = t('project.description')
   section style="padding:0"
     .g-tab
-      header
+      header style="padding-bottom:8px"
         ul
           li#overview
             = link_to t('project.overview'), project_path(@project)
@@ -39,3 +39,5 @@
                 = t('project.price')
               .g-project__field
                 = rupiah(@project.price)
+          .g-project__edit
+            = generate_edit_project(@project)

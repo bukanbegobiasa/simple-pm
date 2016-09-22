@@ -11,6 +11,7 @@ class UserJobsController < ApplicationController
 
   def new
     @user_job = UserJob.new
+    render layout: false
   end
 
   def edit
@@ -21,10 +22,10 @@ class UserJobsController < ApplicationController
 
     respond_to do |format|
       if @user_job.save
-        format.html { redirect_to @user_job, notice: 'User job was successfully created.' }
+        format.html { redirect_to :back, notice: t('success.user_job.create') }
         format.json { render :show, status: :created, location: @user_job }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, notice: t('warning.user_job.create') }
         format.json { render json: @user_job.errors, status: :unprocessable_entity }
       end
     end
@@ -33,7 +34,7 @@ class UserJobsController < ApplicationController
   def update
     respond_to do |format|
       if @user_job.update(user_job_params)
-        format.html { redirect_to @user_job, notice: 'User job was successfully updated.' }
+        format.html { redirect_to @user_job, notice: t('success.user_job.update') }
         format.json { render :show, status: :ok, location: @user_job }
       else
         format.html { render :edit }

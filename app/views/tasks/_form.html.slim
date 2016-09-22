@@ -1,7 +1,27 @@
-= simple_form_for(@task) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :name
-    = f.input :status
-  .form-actions
-    = f.button :submit
+= form_for(@task, url:project_job_tasks_path(@project, @job)) do |f|
+  = f.hidden_field :job_id, value: @job.id
+  = f.hidden_field :created_by, value: current_user.id
+  - if @task.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@task.errors.count, "error")
+        |  prohibited this project from being saved:
+      ul
+        - @task.errors.full_messages.each do |message|
+          li
+            = message
+
+  .g-row.g-task__new
+    .g-task__new__label
+      = f.label :name, t('form.task.name')
+    .g-task__new__field
+      = f.text_field :name
+  .g-row.g-task__new
+    .g-task__new__label
+      = f.label :description, t('form.task.description')
+    .g-task__new__field
+      = f.text_area :description
+  .g-row.g-task__new#submit_button
+    .g-task__new__label
+    .g-task__new__field
+      = f.submit t('form.task.submit')

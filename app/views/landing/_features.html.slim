@@ -1,0 +1,34 @@
+.landing__features
+  h3 = t('landing.features.title')
+
+  .landing__features__one
+    .landing__features__one__picture
+      = image_tag('features.png', class: 'landing__features__one__picture__item')
+    .landing__features__one__left
+      h4 = t('landing.features.one')
+      p.landing__features__one__content
+        = t('landing.features.one_description')
+
+  .landing__features__two
+    .landing__features__two__right
+      h4 = t('landing.features.two')
+      p.landing__features__two__content
+        = t('landing.features.one_description')
+    .landing__features__two__picture
+      = image_tag('activity.png', class: 'landing__features__two__picture__item')
+
+  .landing__features__three
+    .landing__features__three__picture
+      = image_tag('pair.png', class: 'landing__features__three__picture__item')
+    .landing__features__three__left
+      h4 = t('landing.features.three')
+      p.landing__features__three__content
+        = t('landing.features.three_description')
+
+  .landing__features__four
+    .landing__features__four__right
+      h4 = t('landing.features.four')
+      p.landing__features__four__content
+        = t('landing.features.four_description')
+    .landing__features__four__picture
+      = image_tag('all-in-one.png', class: 'landing__features__four__picture__item')

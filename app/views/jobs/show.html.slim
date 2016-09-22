@@ -3,17 +3,22 @@
     header
       h2
         = job_title(@job.title)
+      .action
+        = link_to t('back'), project_jobs_path(@project)
     section.g-job
       .g-job__items
-        .g-job__description__title
-          strong = t('job.title')
-        .g-job__description__content
-          = @job.title
+        .g-job__description__left
+          .g-job__description__title
+            strong = t('job.title')
+          .g-job__description__content
+            = @job.title
+        .g-job__description__right
+          = can_edit(@job)
       .g-job__items
         .g-job__description__title
           strong = t('job.description')
         .g-job__description__content
-          = @job.description
+          = htmlize(@job.description)
       .g-job
         .g-job__half.g-job__items
           .g-job__description__title
@@ -25,26 +30,44 @@
             strong = t('job.finish_at')
           .g-job__description__content
             = indonesian_time(@job.finish_at)
-      .g-job
-        .g-job__half
+      .g-job style="margin-bottom: 0"
+        .g-job__half.g-job__items
           .g-job__description__title
             strong = t('job.status')
           .g-job__description__content
-            = t(@job.job_status.key)
-        .g-job__half
+            = @job.status.name
+            = render 'generate_status'
+        .g-job__half.g-job__items
           .g-job__description__title
             strong = t('job.milestone')
           .g-job__description__content
-            = @job.milestone
+            .g-job__description__content__value
+              = @job.milestone
+            .g-job__description__content__opt
+              = generate_milestone(@job)
+      .g-job
+        .g-job__half
+          .g-job__description__title
+            strong = t('job.assign')
+          .g-job__description__content
+            = user_assignment @job
+            = assigned @job
+            .form#new_assignment style="display:none"
+              = render 'user_jobs/form' if is_created(@job)
 
     hr style="width:95%; margin-left: auto; margin-right: auto;"
 
     .p-bottom
       .g-task
-        h2
-          = t('task.preambule')
-        .g-task__new
-          = render 'tasks/new' if @project.owner?(current_user) or @project.manager?(current_user)
+        - if @project.is_management? current_user.id
+          .g-task__flag-new
+            .g-task__flag-new__title
+              h4 style="margin:0" = t('task.preambule')
+            .g-task__flag-new__action
+              = new_task_link current_user
+          hr.g-task__separator
+          .g-task__new#new_task style="display:none"
+            = render 'tasks/new'
         .g-task__index
           = render 'tasks/index'
 

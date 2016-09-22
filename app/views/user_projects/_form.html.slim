@@ -25,6 +25,7 @@
 
 javascript:
   var roles = JSON.parse('#{raw @roles}');
+  console.log(roles);
   $('#user_project_role_id').select2({
     placeholder: '#{ t("user_project.role_placeholder") }',
     allowClear: true,

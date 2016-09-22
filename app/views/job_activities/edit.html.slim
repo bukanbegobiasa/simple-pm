@@ -1,6 +1,24 @@
-h1
-  | Editing Job Activity
-= render 'form'
-= link_to 'Show', @job_activity
-|  | 
-= link_to 'Back', job_activities_path
+.g-modal#modal
+  .g-modal__container
+    header
+      h3 = t('job_activity.caption_edit')
+    main
+      = render 'form'
+    footer
+      .actions
+        a#submit
+          = t('modal.submit')
+        a#cancel
+          = t('modal.cancel')
+
+javascript:
+  $('#submit_btn').hide();
+  $('#submit').on('click', function(){
+    $('#send').click();
+  });
+
+  $('#cancel').on('click', function(){
+    $('#modal').fadeOut('slow', function(){
+      $('#modal-reload').empty();
+    });
+  });

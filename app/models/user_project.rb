@@ -7,6 +7,9 @@ class UserProject < ActiveRecord::Base
   # Validates
   validates :project, :role, :user_id, presence: true
 
+  # Delegations
+  delegate :name, to: :role, prefix: true
+
   # Pagination
   paginates_per 10
 
@@ -18,6 +21,17 @@ class UserProject < ActiveRecord::Base
     })
 
     user_project.save
+  end
+
+  def save
+    check = UserProject.find_by(user_id: self.user_id,
+                               project_id: self.project_id).blank?
+
+    if check
+      super
+    else
+      check
+    end
   end
 
   def self.auth?(user, role)

@@ -1,0 +1,9 @@
+.landing__register
+  h3.landing__register__title = t('landing.register.title')
+  h4.landing__register__one = t('landing.register.att_one')
+  h4.landing__register__two = t('landing.register.att_two')
+
+  .landing__register__box
+    = link_to t('landing.register.sign_up'), new_user_registration_path, class: 'landing__register__box__up'
+    h5 = t('landing.register.att_three')
+    = link_to t('landing.register.sign_in'), new_user_session_path, class: 'landing__register__box__in'

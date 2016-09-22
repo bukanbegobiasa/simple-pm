@@ -1,0 +1,211 @@
+.full-content{
+  @include row();
+  margin: 0px auto 24px;
+  min-height: 560px;
+  // background: $white;
+  padding: 16px 12px;
+  margin-bottom: 12px;
+  // box-shadow: 1.2px 2.4px 4px 0.1px $black;
+}
+
+.landing{
+  &__introduction{
+
+    h3{
+      font-size: 24px;
+      margin: 8px auto;
+      text-align: center;
+      color: $white;
+    }
+
+    &__explanation{
+      width: 780px;
+      padding: 16px;
+      font-size: 18px;
+      margin: 20px auto;
+      text-align: justify;
+      background: $light-white;
+      @include border-top-radius(.6em);
+      @include border-bottom-radius(.6em);
+    }
+
+    &__development{
+      width: 780px;
+      padding: 16px;
+      font-size: 18px;
+      margin: 20px auto;
+      padding-left: 44px;
+      text-align: justify;
+      background: $light-white;
+      @include border-top-radius(.6em);
+      @include border-bottom-radius(.6em);
+
+      ol{
+        list-style-type: decimal;
+      }
+    }
+  }
+
+  &__features{
+    margin-bottom: 40px;
+
+    h3{
+      font-size: 24px;
+      margin: 8px auto;
+      text-align: center;
+    }
+
+    &__one, &__three{
+      @include row();
+      margin-top: 20px;
+      margin-bottom: 24px;
+
+      &__picture{
+        @include span-columns(4.5);
+        @include shift(.7);
+
+        &__item{
+          float: right;
+          max-height: 220px;
+          margin-right: 20px;
+        }
+      }
+
+      &__left{
+        @include span-columns(6);
+        @include omega();
+      }
+
+      &__content{
+        font-size: 18px;
+        text-align: justify;
+      }
+    }
+
+    &__two, &__four{
+      @include row();
+      margin-top: 8px;
+
+      &__picture{
+        @include span-columns(4.5);
+        @include omega();
+
+        &__item{
+          float: left;
+          max-height: 220px;
+          margin-left: 30px;
+        }
+      }
+
+      &__right{
+        @include span-columns(6);
+        @include shift(.7);
+      }
+
+      &__content{
+        font-size: 18px;
+        text-align: justify;
+      }
+    }
+  }
+
+  &__why{
+    @include row();
+    margin-bottom: 40px;
+
+    h3{
+      color: $white;
+      font-size: 28px;
+      margin: 8px auto;
+      text-align: center;
+    }
+
+    &__items{
+      padding: 16px;
+      font-size: 20px;
+      margin-top: 12px;
+      @include shift(2);
+      margin-bottom: 12px;
+      text-align: justify;
+      @include span-columns(8);
+      background: $light-white;
+      @include border-top-radius(.6em);
+      @include border-bottom-radius(.6em);
+    }
+  }
+
+  &__register{
+
+    &__one, &__two{
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 2em;
+    }
+
+    &__title{
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 2.4em;
+    }
+
+    &__box{
+      @include omega();
+      @include shift(4);
+      @include span-columns(4);
+      @include border-top-radius(.4em);
+      @include border-bottom-radius(.4em);
+
+      padding-top: 8px;
+      padding-left: 8px;
+      padding-right: 8px;
+      text-align: center;
+      padding-bottom: 16px;
+      border: 1px solid $black;
+
+      &__up, &__in{
+        padding: 12px;
+        margin: 16px 12px;
+        display: inline-block;
+        background: $bluegray;
+        @include border-top-radius(.2em);
+        @include border-bottom-radius(.2em);
+
+        &:hover{
+          color: $white;
+          background: $medium-gray;
+        }
+      }
+
+      &__in{
+        background: $yellow;
+
+        &:hover{
+          color: $black;
+          background: rgba(250, 255, 10, .67);
+        }
+      }
+    }
+  }
+}
+
+#parallax{
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url('management.jpg');
+}
+
+#parallax2{
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url('leadership.jpg');
+}
+
+#features{
+  background: #D8D8D8;
+}
+
+#register{
+  background: #F3F3F3;
+}

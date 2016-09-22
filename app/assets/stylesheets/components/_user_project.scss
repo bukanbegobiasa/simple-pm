@@ -11,12 +11,69 @@
     @include span-columns(9);
 
     & > *{
-      width: 80%;
+      width: 70% !important;
     }
   }
 
   &__actions{
     @include span-columns(3);
-    @include shift(9);
+    @include shift(8);
   }
+}
+
+.g-user_project{
+
+  &__new{
+
+    &__title{
+      @include row();
+
+      &__text{
+        @include span-columns(10);
+      }
+
+      &__action{
+          @include span-columns(1);
+          text-align: right;
+      }
+    }
+
+    &__separator{
+      margin: 0;
+    }
+
+    &__expanded{
+      display: none;
+    }
+  }
+
+  &__button_new{
+    border: 0;
+    color: #fff;
+    width: 112px;
+    display: block;
+    line-height: 1;
+    cursor: pointer;
+    appearance: none;
+    font-weight: 600;
+    user-select: none;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: middle;
+    font-size: $base-font-size;
+    background-color: $bluegray;
+    font-family: $base-font-family;
+    border-radius: $base-border-radius;
+    -webkit-font-smoothing: antialiased;
+    padding: $small-spacing $base-spacing;
+    transition: background-color $base-duration $base-timing;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: shade($action-color, 20%);
+    }
+  }
+
 }

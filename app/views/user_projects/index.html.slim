@@ -6,7 +6,7 @@
         = t('project.description')
   section style="padding:0"
     .g-tab
-      header
+      header style="padding-bottom:8px"
         ul
           li#overview
             = link_to t('project.overview'), project_path(@project)
@@ -19,7 +19,7 @@
       section.main
         .panel.active#detail
           - if @project.owner?(current_user)
-            section.member__add
+            section.member__add style="padding-top:0; padding-bottom:0"
               = render 'new'
           section.member__content
             table
@@ -31,6 +31,6 @@
               tbody
                 - @user_projects.each do |user_project|
                   tr
-                    td = user_project.user.fullname
+                    td = link_to user_project.user.fullname, user_show_path(user_project.user_id)
                     td = user_project.project.name
                     td = user_project.role.name

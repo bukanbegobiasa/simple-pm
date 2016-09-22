@@ -1,26 +1,24 @@
-.row
-  .g-card.half
-    header
-      h2
-        | askdnasnd
-        small
-          | akksjndkasj
-    main
-      | askdnkj
+doctype html
+html
+  head
+    title = title(yield :title)
+    meta name="keywords" content="product management system"
+    meta name="author" content="satrio nugroho"
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
 
-  .g-card.half
-    header
-      h2
-        | askdnasnd
-        small
-          | akksjndkasj
-    main
-      | askdnkj
+  body
+    = render 'shared/navigation'
+    .row#parallax
+      .row.full-content#basic-home
+        = render 'landing/basic_home'
+      .row.full-content#features
+        = render 'landing/features'
+    .row#parallax2
+      .row.full-content#whyuse
+        = render 'landing/why_use'
+      .row.full-content#register
+        = render 'landing/register'
 
-.g-modal
-  header
-    | title
-  main
-    | isi
-  footer
-    | footer
+    = render 'shared/footer'

@@ -1,37 +1,74 @@
-h2
-  | Edit 
-  = resource_name.to_s.humanize
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for: 
-      = resource.unconfirmed_email
-  .field
-    = f.label :password
-    i
-      | (leave blank if you don't want to change it)
-    br
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    i
-      | (we need your current password to confirm your changes)
-    br
-    = f.password_field :current_password, autocomplete: "off"
-  .actions
-    = f.submit "Update"
-h3
-  | Cancel my account
-p
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+.g-modal#modal
+  .g-modal__container
+    header
+      h3 = t('user.edit_profile')
+    main
+      .g-modal__main
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = devise_error_messages!
+          .g-row.g-user
+            .g-sign_up__label
+              = f.label :email
+            .g-sign_up__field
+              = resource.email
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            .g-row.g-user
+              .g-sign_up__label
+                = f.label :confirm_email
+              .g-sign_up__field
+                = resource.unconfirmed_email
+                | Currently waiting confirmation for:
+          .g-row.g-user
+            .g-sign_up__label
+              = f.label :password
+            .g-sign_up__field
+              = f.password_field :password, autocomplete: "off"
+              i
+                | (leave blank if you don't want to change it)
+          .g-row.g-user
+            .g-sign_up__label
+              = f.label :password_confirmation
+            .g-sign_up__field
+              = f.password_field :password_confirmation, autocomplete: "off"
+          .g-row.g-user
+            .g-sign_up__label
+              = f.label :current_password
+            .g-sign_up__field
+              = f.password_field :current_password, autocomplete: "off"
+              i
+                | (we need your current password to confirm your changes)
+          .g-row.g-user
+            .g-sign_up__label
+              = f.label :username, t('sign_up.username')
+            .g-sign_up__field
+              = f.text_field :username, autocomplete: "off"
+          .g-row.g-user
+            .g-sign_up__label
+              = f.label :initial, t('sign_up.initial')
+            .g-sign_up__field
+              = f.text_field :initial, autocomplete: "off"
+          .g-row.g-user
+            .g-sign_up__label
+              = f.label :fullname, t('sign_up.fullname')
+            .g-sign_up__field
+              = f.text_field :fullname, autocomplete: "off"
+          .g-row.g-user
+            .g-sign_up__actions
+              = f.submit t('update'), id: 'send', style: "display: none"
+    footer
+      .actions
+        a#submit
+          = t('modal.submit')
+        a#cancel
+          = t('modal.cancel')
+
+javascript:
+  $('#submit').on('click', function(){
+    $('#send').click();
+  });
+
+  $('#cancel').on('click', function(){
+    $('#modal').fadeOut('slow', function(){
+      $('#modal-reload').empty();
+    });
+  });

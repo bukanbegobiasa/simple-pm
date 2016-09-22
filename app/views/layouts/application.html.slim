@@ -12,20 +12,24 @@ html
     = render 'shared/navigation'
     section.g-outer-container
       - if notice
-        .g-notification.g-notice
+        .g-notification.g-notice#notification
           .g-notification__message
             = notice
           .g-notification__actions
-            a
+            a onclick='remove_notification()'
               i.zmdi.zmdi-hc-lg.zmdi-close
       - if alert
-        .g-notification.g-alert
+        .g-notification.g-alert#notification
           .g-notification__message
             = alert
           .g-notification__actions
-            a
+            a onclick='remove_notification()'
               i.zmdi.zmdi-hc-lg.zmdi-close
       section.g-main
         = yield
+
     #modal-reload
+
     = yield :javascript
+
+    = render 'shared/footer'

@@ -1,13 +1,19 @@
-p#notice
-  = notice
-p
-  strong
-    | Name:
-  = @task.name
-p
-  strong
-    | Status:
-  = @task.status
-= link_to 'Edit', edit_task_path(@task)
-|  | 
-= link_to 'Back', tasks_path
+.g-card.g-task__half
+  header
+    h2
+      | Task detail
+    .action
+      = generate_task_action(@task)
+      | &nbsp;
+      = link_to t('back'), :back
+  main style="margin-top:20px"
+    .g-task
+      .g-task__label
+        = t('task.name')
+      .g-task__content
+        = @task.name
+    .g-task style="margin-top:20px"
+      .g-task__label
+        = t('task.description')
+      .g-task__content
+        = htmlize(@task.description)

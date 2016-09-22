@@ -22,20 +22,82 @@
 en:
   hello: "Hello world"
 
+  save:       Save
+  back:       Back
+  edit:       Edit
+  update:     Update
+  submit:     Submit
+  expand:     Expand
+
+  home:
+    why:            Why PM
+    features:       Features
+    register:       Sign Up / Sign In
+
   master:
-      role:
-        qa:         Quality Assurance
-        dba:        Database Administrator
-        owner:      Owner
-        manager:    Product Manager
-        analyst:    System Analyst
-        developer:  Developer
+    role:
+      qa:             Quality Assurance
+      dba:            Database Administrator
+      owner:          Owner
+      manager:        Product Manager
+      analyst:        System Analyst
+      developer:      Developer
+    job_status:
+      done:           Done
+      started:        Start
+      restart:        Restart
+      finished:       Finish
+      accepted:       Accept
+      rejected:       Reject
+      delivered:      Deliver
+      initialize:     Initialize
+
+  form:
+    task:
+      name:           Name
+      submit:         Save
+      description:    Description
+    job_activities:
+      name:           Enter your activities here
+      submit:         Submit
+
+  warning:
+    task:
+      create:             Your task was't created
+      update:             Your task isn't updated
+    project:
+      create:             Something wen't wrong, Please try again
+      update:             Your project is not updated
+      not_authenticate:   You cannot entered this project
+    job:
+      create:             Your job not successfully created
+      update:             Sorry, something error on saving your job
+
+  success:
+    task:
+      create:         Your task is saved
+      update:         Your task is updated
+    user_job:
+      create:         Task was assigned successfully
+      update:         Task was re-assigned successfully
+    project:
+      create:         Your project is saved successfully
+      update:         Your project is updated successfully
+      delete:         Project is successfully deleted
+    job:
+      create:         New Job was saved successfully
+      update:         Your job was updated successfully
+      delete:         Job was successfully deleted
+    job_activity:
+      create:         Your activity was record
+      update:         Your activity was changed
+      delete:         Successfully deleted
 
   navbar:
-    sign_up:      Sign Up
-    sign_in:      Sign In
-    sign_out:     Log out
-    project:      Add Project
+    sign_up:          Sign Up
+    sign_in:          Sign In
+    sign_out:         Log out
+    project:          Add Project
 
   sign_in:
     title:            Login Page
@@ -47,31 +109,114 @@ en:
     email:            Email
 
   sign_up:
-    title:            Sign Up Page
-    description:      This session have two steps, input your Identity, after that input your credentials.
-    women:            Women
     men:              Men
+    women:            Women
     email:            Email
-    password:         Password
-    confirmation:     Password Confirmation
-    username:         Username
-    fullname:         Fullname
+    title:            Sign Up Page
     gender:           Gender
     submit:           Sign Up
+    initial:          Initial
+    password:         Password
+    username:         Username
+    fullname:         Fullname
+    description:      This session have two steps, input your Identity, after that input your credentials.
+    confirmation:     Password Confirmation
 
   project:
-    job:          Jobs
-    detail:       Details
-    member:       Members
-    overview:     Overview
+    job:              Jobs
+    name:             Name
+    edit:             Edit this project
+    list:             List of projects
+    start:            Start
+    price:            Price
+    detail:           Details
+    member:           Members
+    finish:           Finish
+    nothing:          Nothing to show
+    overview:         Overview
+    description:      Description
 
   user_project:
-    email_placeholder:    Input email or username
+    new_title:            Add user to this project
     role_placeholder:     Input role of user
+    email_placeholder:    Input email or username
 
   modal:
     submit:       Submit
     cancel:       Cancel
 
   job:
-    title:        Job Title
+    edit:               Edit Job
+    title:              Job Title
+    assign:             Assign
+    status:             Status
+    delete:             Delete
+    add_user:           Add User
+    start_at:           Start At
+    activity:           Activity
+    finish_at:          Finish At
+    milestone:          Milestone
+    unassigned:         Unassigned
+    description:        Description
+    caption_edit:       Edit Job
+    change_status:      Change Status
+    add_milestone:      Add Milestone
+    edit_milestone:     Edit Milestone
+
+  user_job:
+    add:              Add User
+
+  task:
+    name:             Name
+    number:           No
+    nothing:          Nothing to show
+    preambule:        Add New Task
+    description:      Description
+
+  user:
+    male:             Male
+    edit:             Edit
+    name:             Fullname
+    email:            Email
+    detail:           Detail
+    female:           Female
+    gender:           Gender
+    initial:          Initial
+    username:         Username
+    edit_profile:     Edit Profile
+
+  job_activity:
+    edit:             Edit
+    caption_edit:     Edit Activity
+
+
+  landing:
+    intro:
+      title:          What is Product Management System ?
+      explain:        Is an organizational lifecycle function within a company dealing with the planning, forecasting and production, or marketing of a product or products at all stages of the product lifecycle. Similarity, Product Lifecycle Management that integrates people, data process and bussiness systems. It provides product information for companies and their extended supply chain enterprise.
+      second_explain: While involved with the entire product lifecycle, the product management's main focus is on driving new product development. According to the Product Development and Management Association (PDMA), superior and differentiated new products. --ones deliver unique benefit and superior value to the customer are the number one driver of success and product profitability.
+      development:    <ol><li>Testing</li><li>Indentifying new product candidates</li><li>Considering new candidates</li><li>Gathering the voice of customers</li><li>Defining product requirements</li><li>Determining bussiness-case and feasibility</li><li>Scopping and defining new product at high level</li></ol>
+      development_title: Product Development
+    features:
+      title:              Features
+      one:                Can manage resource that you have
+      one_description:    Manage all resource, managing all human resource to develop the entire system can make funny and easy to track the failure on the little system.
+      two:                Interactive with activity
+      two_description:    With the activity board, can use the interactive session between the owner, product managers, and also the developers. That's always be more easy than you have to do before.
+      three:              Support Xtreme Programming
+      three_description:  Also support extreme programming, it's also can be pair programming. Funny with the test sets and enjoy your development time.
+      four:               All your project in one room
+      four_description:   You can manage all your project between teams, companies and etc in one area.
+    why:
+      title:              Why Use ?
+      first_exp:          Product Management System can make better relationhip for employees to others. Clearly job description and little bit of failure. Most of big company use the product management tools to manage their resource. And the resource is not always the human, the other entity like i.e. computer, cloud and etc.
+      second_exp:         Better issue tracking for resolve the bug in their project. Easily to maintain the resource to repair the bug in a small and/or big project that lead to.
+      third_exp:          Better planing in time resource. Make the development time is more fast than usualy can be. Is more and more productive.
+    register:
+      title:              Came with us
+      att_one:            Develop most attractive project in a one place
+      att_two:            Try it for free
+      sign_up:            Sign Up here
+      att_three:          Have an account ?
+      sign_in:            Sign In here
+

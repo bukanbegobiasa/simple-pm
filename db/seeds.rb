@@ -21,5 +21,6 @@ job_status = JobStatus.create([
   { key: 'master.job_status.finished' },
   { key: 'master.job_status.delivered' },
   { key: 'master.job_status.accepted' },
-  { key: 'master.job_status.restart' }
+  { key: 'master.job_status.restart' },
+  { key: 'master.job_status.done' }
 ])

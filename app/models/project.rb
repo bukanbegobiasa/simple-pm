@@ -10,6 +10,20 @@ class Project < ActiveRecord::Base
   validates :active, presence: true, on: :update
   validate :finish_must_be_end
 
+  def self.authenticate!(project_id)
+    return self.where(id: project_id).present?
+  end
+
+  def is_management?(user)
+    roles = Role.management
+    return self.user_projects.where(role_id: roles, user_id: user).present?
+  end
+
+  def is_quality_assurance?(user)
+    roles = Role.quality_assurance
+    return self.user_projects.where(role_id: roles, user_id: user).present?
+  end
+
   def save_all(user)
     self.save and UserProject.create_new({project_id: self.id, user_id: user.id })
   end
@@ -22,8 +36,25 @@ class Project < ActiveRecord::Base
     return self.user_projects.auth?(user.id, 2)
   end
 
-  def self.authenticate!(project_id)
-    return self.where(id: project_id).present?
+  def role(user)
+    self.user_projects.find_by(user_id: user).role_name
+  end
+
+  def is_user_belongs_to_project user
+    self.user_projects.where(user_id: user).present?
+  end
+
+  def participants
+    roles = Role.not_management
+    user_ids = self.user_projects.where(role_id: roles).map{ |user| [ user.id ]}
+
+    if user_ids.blank?
+      user = [[ "not_assigned", 0 ]]
+    else
+      user = User.find(user_ids).map{|user| [user.username, user.id]}
+    end
+
+    user
   end
 
   private

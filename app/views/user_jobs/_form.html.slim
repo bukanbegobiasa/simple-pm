@@ -1,7 +1,15 @@
-= simple_form_for(@user_job) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.association :user
-    = f.association :job
-  .form-actions
+= form_for(@user_job, url: user_jobs_path) do |f|
+  = f.hidden_field :job_id, value: @job.id
+  .g-row
+    .g-user_job__new__label
+      = f.label :user_id
+    .g-user_job__new__field
+      = f.select :user_id, options_for_select(@list_users), include_blank: true
+  .g-row
     = f.button :submit
+
+javascript:
+  $('#user_job_user_id').select2({
+    placeholder: '#{ t("user_project.role_placeholder") }',
+    allowClear: true
+  });

@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    render layout: false
   end
 
   def create
@@ -22,11 +23,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
+        format.html { redirect_to project_job_path(@project, @job), notice: t('success.task.create') }
       else
-        format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.html { redirect_to project_job_path(@project, @job), notice: t('warning.task.create') }
       end
     end
   end
@@ -34,7 +35,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to project_job_path(@project, @task.job), notice: t('success.task.update') }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -44,9 +45,9 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    @task.update_columns(status: false)
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to tasks_url, notice: t('success.task.delete') }
       format.json { head :no_content }
     end
   end
@@ -65,6 +66,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:name, :status)
+      params.require(:task).permit(:job_id, :name, :description, :status, :created_by)
     end
 end

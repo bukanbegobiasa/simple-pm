@@ -1,15 +1,28 @@
 header.d-navigation
   .d-navigation__header
-    = link_to "Dee", root_url
+    - unless user_session
+      a href='#{ root_url }#basic_home' Dee
+    - if user_session
+      = link_to "Dee", root_url
   ul.d-navigation__wrapper
     - unless user_session
-      li.d-navigation__wrapper__item 
-        = link_to t('navbar.sign_in'), new_user_session_path
-      li.d-navigation__wrapper__item
-        = link_to t('navbar.sign_up'), new_user_registration_path
+      - if request.fullpath.include?('users')
+        li.d-navigation__wrapper__item
+          a href='#{ root_url }#features' = t('home.features')
+        li.d-navigation__wrapper__item
+          a href='#{ root_url }#whyuse' = t('home.why')
+        li.d-navigation__wrapper__item
+          a href='#{ root_url }#register' = t('home.register')
+      - else
+        li.d-navigation__wrapper__item
+          a href='#features' = t('home.features')
+        li.d-navigation__wrapper__item
+          a href='#whyuse' = t('home.why')
+        li.d-navigation__wrapper__item
+          a href='#register' = t('home.register')
     - if user_session
       li.d-navigation__wrapper__item
-        a#new-project onclick="return false" data-url=new_project_url
+        a#new-project onclick="open_modal(this); return false" data-url=new_project_url
           = t('navbar.project')
       li.d-navigation__wrapper__item
         = link_to t('navbar.sign_out'), destroy_user_session_path, method: :delete

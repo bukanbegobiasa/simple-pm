@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :detail]
   before_action :authenticate_user!, except: :index
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :detail]
+  before_action :is_belongs_to_project?, only: [:show]
 
   def index
-    render 'landing/home' unless current_user
+    render 'landing/home', layout: false unless current_user
     @projects = current_user.projects if current_user
   end
 
@@ -19,6 +20,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    render layout: false
   end
 
   def create
@@ -26,10 +28,10 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save_all current_user
-        format.html { redirect_to root_path, notice: 'Project was successfully created.' }
+        format.html { redirect_to root_path, notice: t('success.project.create') }
         format.json { render :show, status: :created, location: @project }
       else
-        format.html { render :new }
+        format.html { render :new, warning: t('warning.project.create')}
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -38,19 +40,19 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to project_detail_path(@project), notice: t('success.project.update')}
         format.json { render :show, status: :ok, location: @project }
       else
-        format.html { render :edit }
+        format.html { render :edit, warning: t('warning.project.update') }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @project.destroy
+    @project.update_columns(active: false)
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projects_url, notice: t('success.project.delete')}
       format.json { head :no_content }
     end
   end

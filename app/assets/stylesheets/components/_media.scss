@@ -33,14 +33,15 @@ a{
 
   header{
     color: $white;
-    padding-top: 20px;
+    padding-top: 18px;
     padding-left: 32px;
     padding-right: 32px;
-    padding-bottom: 8px;
+    padding-bottom: 48px;
     background-color: $bluegray;
     @include border-top-radius(5px);
 
     h2{
+      @include span-columns(10);
       font-weight: 300;
 
       small{
@@ -49,6 +50,11 @@ a{
         margin-top: 4px;
         font-weight: 100;
       }
+    }
+
+    .action{
+      @include span-columns(2);
+      text-align: right;
     }
   }
 

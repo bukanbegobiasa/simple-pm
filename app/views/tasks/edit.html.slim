@@ -1,6 +1,51 @@
-h1
-  | Editing Task
-= render 'form'
-= link_to 'Show', @task
-|  | 
-= link_to 'Back', tasks_path
+.g-modal#modal
+  .g-modal__container
+    header
+      h3 = t('job.milestone')
+    main
+      .g-modal__main
+        = form_for(@task, url: project_job_task_path(@project, @job, @task)) do |f|
+          = f.hidden_field :job_id, value: @job.id
+          = f.hidden_field :created_by, value: current_user.id
+          - if @task.errors.any?
+            #error_explanation
+              h2
+                = pluralize(@task.errors.count, "error")
+                |  prohibited this project from being saved:
+              ul
+                - @task.errors.full_messages.each do |message|
+                  li
+                    = message
+
+          .g-row.g-task__new
+            .g-task__new__label
+              = f.label :name, t('form.task.name')
+            .g-task__new__field
+              = f.text_field :name
+          .g-row.g-task__new
+            .g-task__new__label
+              = f.label :description, t('form.task.description')
+            .g-task__new__field
+              = f.text_area :description
+          .g-row.g-task__new#submit_button
+            .g-task__new__label
+            .g-task__new__field
+              = f.submit t('form.task.submit'), id: "send"
+    footer
+      .actions
+        a#submit
+          = t('modal.submit')
+        a#cancel
+          = t('modal.cancel')
+
+javascript:
+  $('#submit_button').hide();
+  $('#submit').on('click', function(){
+    $('#send').click();
+  });
+
+  $('#cancel').on('click', function(){
+    $('#modal').fadeOut('slow', function(){
+      $('#modal-reload').empty();
+    });
+  });

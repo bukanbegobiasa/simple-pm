@@ -1,0 +1,41 @@
+.g-user{
+  @include row();
+
+  &__caption{
+    @include span_columns(3);
+    text-align: right;
+    font-weight: 600;
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+
+  &__detail{
+    @include span_columns(9);
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+
+  &__project{
+    padding-top: 20px;
+
+    &__item{
+      @include row();
+      margin-bottom: 20px;
+      padding-left: 30px;
+
+      a{
+        color: $black;
+        text-decoration: underline;
+      }
+
+      &__name{
+        @include span-columns(8);
+      }
+
+      &__role{
+        @include span-columns(4);
+        font-weight: 600;
+      }
+    }
+  }
+}

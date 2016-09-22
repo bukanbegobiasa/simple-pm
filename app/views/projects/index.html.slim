@@ -1,4 +1,5 @@
 - content_for :title, 'List Projects'
+
 .g-card
   header
     h2
@@ -14,9 +15,14 @@
           th Start at
           th Finish at
       tbody
-        - @projects.each do |project|
+        - if @projects.blank?
           tr
-            td = link_to project.name, project
-            td = rupiah(project.price)
-            td = indonesian_time(project.start_at)
-            td = indonesian_time(project.finish_at)
+            td colspan="4"
+              center = t('project.nothing')
+        - else
+          - @projects.each do |project|
+            tr
+              td = link_to project.name, project
+              td = rupiah(project.price)
+              td = indonesian_time(project.start_at)
+              td = indonesian_time(project.finish_at)

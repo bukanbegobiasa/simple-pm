@@ -69,11 +69,12 @@ ActiveRecord::Schema.define(version: 20160622205323) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "job_id"
-    t.string   "name",       default: "",   null: false
-    t.boolean  "status",     default: true, null: false
-    t.integer  "created_by",                null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",        default: "",   null: false
+    t.string   "description", default: "",   null: false
+    t.boolean  "status",      default: true, null: false
+    t.integer  "created_by",                 null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "tasks", ["job_id"], name: "index_tasks_on_job_id", using: :btree

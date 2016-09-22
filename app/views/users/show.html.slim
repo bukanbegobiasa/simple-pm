@@ -1,0 +1,43 @@
+.g-card.g-user.half
+  header
+    h2 = t('user.detail')
+    .action
+      = generate_link(@user)
+  section style="padding:0"
+    .g-user
+      .g-row
+        .g-user__caption
+          = t("user.name")
+        .g-user__detail
+          = @user.fullname
+      .g-row
+        .g-user__caption
+          = t("user.email")
+        .g-user__detail
+          = @user.email
+      .g-row
+        .g-user__caption
+          = t("user.username")
+        .g-user__detail
+          = @user.username
+      .g-row
+        .g-user__caption
+          = t("user.initial")
+        .g-user__detail
+          = @user.initial
+      .g-row
+        .g-user__caption
+          = t("user.gender")
+        .g-user__detail
+          = genderize @user.gender
+.g-card.g-user.half
+  header
+    h2 = t('project.list')
+  section style="padding:0"
+    .g-user__project
+      - @projects.each do |project|
+        .g-user__project__item
+          .g-user__project__item__name
+            = link_to project.name, project
+          .g-user__project__item__role
+            = project.role(@user.id)

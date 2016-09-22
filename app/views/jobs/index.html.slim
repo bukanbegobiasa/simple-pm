@@ -6,7 +6,7 @@
         = t('project.description')
   section style="padding:0"
     .g-tab
-      header
+      header style="padding-bottom:8px"
         ul
           li#overview
             = link_to t('project.overview'), project_path(@project)
@@ -19,23 +19,24 @@
       section.main
         .panel.active#detail
           - if @project.owner?(current_user) or @project.manager?(current_user)
-            section.g-jobs-new
-              = render 'new'
-          section.g-jobs-list
+            = render 'new'
+          section.g-jobs-list style="padding-top:0"
             table
               thead
                 tr
                   th Title
                   th Description
                   th Assign at
+                  th Progress
                   th Start At
                   th Finish At
               tbody
                 - @jobs.each do |job|
                   tr
-                    td = link_to job.title, project_job_path(@project, job)
+                    td = link_to job.title.truncate(30), project_job_path(@project, job)
                     td = job.description.truncate(30)
                     td = user_assignment(job)
+                    td = "#{job.rate} %"
                     td = indonesian_time(job.start_at)
                     td = indonesian_time(job.finish_at)
 

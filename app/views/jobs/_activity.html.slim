@@ -1,9 +1,10 @@
-- @job.activity.each do |activity|
-  .g-activity__wrapper
-    .g-activity__items
-      .g-activity__items__username
-        = activity.user_username
-      .g-activity__items__content
-        = activity.name
-      .g-activity__items__actions
-        = generate_activity_actions(activity, current_user.id)
+- if @job_activities.present?
+  - @job_activities.each do |activity|
+    .g-activity__wrapper
+      .g-activity__items
+        .g-activity__items__username
+          = activity.user_username
+        .g-activity__items__content
+          = htmlize(activity.name)
+        .g-activity__items__actions
+          = generate_activity_actions(activity, current_user.id)

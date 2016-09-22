@@ -1,0 +1,29 @@
+= form_for(@job, url: project_job_status_path(@project, @job)) do |f|
+  = f.hidden_field :project_id, value: @project.id
+  - if @project.is_management? current_user.id
+    - if @job.job_status_id == 4
+      = f.submit t('master.job_status.accepted'), value: 'accept', class: 'g-job_status__button__accept'
+      = f.submit t('master.job_status.rejected'), value: 'reject', class: 'g-job_status__button__rejected'
+    - else @job.job_status_id == 5
+      = f.submit @job.status.name, class: 'g-job_status__button__disabled', disabled: true
+
+  - elsif @project.is_quality_assurance? current_user.id
+    - if @job.job_status_id == 3
+      = f.hidden_field :status, value: 4
+      = f.submit t('master.job_status.delivered'), value: 'deliver', class: 'g-job_status__button__deliver'
+      = f.submit t('master.job_status.rejected'), value: 'reject', class: 'g-job_status__button__rejected'
+    - else
+      = f.submit @job.status.name, class: 'g-job_status__button__disabled', disabled: true
+
+  - else
+    - if @job.job_status_id == 1
+      = f.hidden_field :status, value: 2
+      = f.submit t('master.job_status.started'), value: 'start', class: 'g-job_status__button__accept'
+    - elsif @job.job_status_id == 2
+      = f.hidden_field :status, value: 3
+      = f.submit t('master.job_status.finished'), value: 'finish', class: 'g-job_status__button__rejected'
+    - elsif @job.job_status_id == 6
+      = f.hidden_field :status, value: 2
+      = f.submit t('master.job_status.restart'), value: 'restart', class: 'g-job_status__button__restart'
+    - else
+      = f.submit @job.status.name, class: 'g-job_status__button__disabled', disabled: true
