@@ -10,7 +10,7 @@ module JobsHelper
       texting = raw("<ul>")
 
       job.user.each do |user|
-        texting += raw("<li>" + user.username + "</li>")
+        texting += raw("<li><strong> #{ user.initial }</strong>&nbsp;<p> #{ user.username } </p></li>")
       end
 
       texting += raw("</ul>")

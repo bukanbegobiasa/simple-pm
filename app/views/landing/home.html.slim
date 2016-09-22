@@ -10,6 +10,22 @@ html
 
   body
     = render 'shared/navigation'
+    section.g-outer-container style="display:none"
+      - if notice
+        .g-notification.g-notice#notification
+          .g-notification__message
+            = notice
+          .g-notification__actions
+            a onclick='remove_notification()'
+              i.zmdi.zmdi-hc-lg.zmdi-close
+      - if alert
+        .g-notification.g-alert#notification
+          .g-notification__message
+            = alert
+          .g-notification__actions
+            a onclick='remove_notification()'
+              i.zmdi.zmdi-hc-lg.zmdi-close
+
     .row#parallax
       .row.full-content#basic-home
         = render 'landing/basic_home'

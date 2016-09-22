@@ -46,7 +46,7 @@ class Project < ActiveRecord::Base
 
   def participants
     roles = Role.not_management
-    user_ids = self.user_projects.where(role_id: roles).map{ |user| [ user.id ]}
+    user_ids = self.user_projects.where(role_id: roles).map{ |user| user.user_id }
 
     if user_ids.blank?
       user = [[ "not_assigned", 0 ]]
