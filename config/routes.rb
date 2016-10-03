@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       patch 'status'          => 'jobs#update_status'
     end
 
+    post  'jobs/search'       => 'jobs#search',       as: :jobs_search
     resources :user_projects
   end
 

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def search
     term = params[:search][:term]
-    result = User.where('email LIKE ? OR username LIKE ?', "%#{ term }%", "%#{ term }%")
+    result = User.search_user term
     render json: result
   end
 

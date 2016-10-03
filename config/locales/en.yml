@@ -25,9 +25,11 @@ en:
   save:       Save
   back:       Back
   edit:       Edit
+  search:     Search
   update:     Update
   submit:     Submit
   expand:     Expand
+  nothing:    Nothing to show
 
   home:
     why:            Why PM

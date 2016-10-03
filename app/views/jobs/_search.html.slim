@@ -1,0 +1,10 @@
+= form_for(@job, url: project_jobs_search_path(@project)) do |f|
+  = f.hidden_field :project_id, value: @project.id
+
+  .g-row.g-job__search
+    .g-job__search__label
+      = f.label :title
+    .g-job__search__field
+      = f.text_field :title
+    .g-job__search__submit
+      = f.submit t('search')

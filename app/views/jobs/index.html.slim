@@ -20,6 +20,8 @@
         .panel.active#detail
           - if @project.owner?(current_user) or @project.manager?(current_user)
             = render 'new'
+          .g-jobs__search
+            = render 'search'
           section.g-jobs-list style="padding-top:0"
             table
               thead
@@ -31,12 +33,15 @@
                   th Start At
                   th Finish At
               tbody
-                - @jobs.each do |job|
+                - if @jobs.blank?
                   tr
-                    td = link_to job.title.truncate(30), project_job_path(@project, job)
-                    td = job.description.truncate(30)
-                    td = user_assignment(job)
-                    td = "#{job.rate} %"
-                    td = indonesian_time(job.start_at)
-                    td = indonesian_time(job.finish_at)
-
+                    td style="text-align: center; font-weight: 600;" colspan='6' = t('nothing')
+                - else
+                  - @jobs.each do |job|
+                    tr
+                      td = link_to job.title.truncate(30), project_job_path(@project, job)
+                      td = job.description.truncate(30)
+                      td = user_assignment(job)
+                      td = "#{job.rate} %"
+                      td = indonesian_time(job.start_at)
+                      td = indonesian_time(job.finish_at)

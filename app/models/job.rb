@@ -35,6 +35,10 @@ class Job < ActiveRecord::Base
     where(active: true)
   }
 
+  scope :search_jobs, ->(project){
+    where("project_id = ? AND title LIKE ?", project[:project_id], "%#{ project[:title] }%")
+  }
+
   def activities
     self.activity.active
   end

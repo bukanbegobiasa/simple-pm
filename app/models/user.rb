@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   validates :fullname, presence: true, length: { minimum: 5 }
   validates :gender, presence: true, inclusion: { in: [true, false] }
 
+  scope :search_user, ->(term){
+      where('email LIKE ? OR username LIKE ?', "%#{ term }%", "%#{ term }%")
+  }
+
   private
   def assign_initial_value
     self.initial = username[0..2].upcase

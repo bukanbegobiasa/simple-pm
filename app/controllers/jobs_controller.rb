@@ -20,6 +20,12 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
+  def search
+    @job = Job.new
+    @jobs = Job.eager_load(:activity).search_jobs(job_params)
+    render 'index'
+  end
+
   def edit
     render layout: false
   end

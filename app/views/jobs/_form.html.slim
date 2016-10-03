@@ -1,12 +1,12 @@
 = form_for(@job, url: project_jobs_path) do |f|
   = f.hidden_field :project_id, value: @project.id
-  - if @project.errors.any?
+  - if @job.errors.any?
     #error_explanation
       h2
-        = pluralize(@project.errors.count, "error")
+        = pluralize(@job.errors.count, "error")
         |  prohibited this project from being saved:
       ul
-        - @project.errors.full_messages.each do |message|
+        - @job.errors.full_messages.each do |message|
           li
             = message
   .g-row.g-job__new
