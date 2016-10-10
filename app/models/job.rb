@@ -47,6 +47,10 @@ class Job < ActiveRecord::Base
     self.user_jobs.find_by(user_id: user).present?
   end
 
+  def owned user
+    self.user.find(user).present? rescue ActiveRecord::RecordNotFound
+  end
+
   def assign_user user
     if is_have_a_user user
       return true

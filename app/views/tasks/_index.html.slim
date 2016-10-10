@@ -1,17 +1,25 @@
 table
   thead
     tr
-      th No
-      th = t('task.name')
+      th width='30px' No
+      th width='240px' = t('task.name')
       th = t('task.description')
+      th width='90px' = "Start At"
+      th width='90px' = "Finish At"
+      th width='50px'= "Status"
   tbody
     - i = 1
     - if @tasks.present?
       - @tasks.each do |task|
         tr
           td = i
-          td = link_to task.name, project_job_task_path(@project, @job, task)
+          td
+            = link_to task.name, project_job_task_path(@project, @job, task)
+            .g-project__status style="background-color:#{ generate_task_status_style(task) }"
           td = htmlize(task.description.truncate_words(4))
+          td = indonesian_time task.start_at
+          td = indonesian_time task.finish_at
+          td = generate_task_status task
         - i += 1
     - else
       tr

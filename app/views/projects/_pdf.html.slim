@@ -1,0 +1,49 @@
+.summary
+  .row
+    .summary__date style="text-align: right; padding-right: 24px;"
+      = indonesian_time(Time.now)
+  .summary__title
+    h3 = @project.name
+  .row style="margin-bottom: 20px;"
+    .summary__description
+      .summary__description__caption = "#{ t('from') } :"
+      .summary__description__value = indonesian_time(@project.start_at)
+    .summary__description
+      .summary__description__caption = "#{ t('to') } :"
+      .summary__description__value = indonesian_time(@project.finish_at)
+
+  .summary__main
+    - i = 1
+    - final = 0
+    - @jobs.each do |job|
+      .row.summary__item
+        .row
+          .summary__main__number   = "#{ i }."
+          .summary__main__title    = job.title
+          .summary__main__contrib  = "#{ job.percent } %"
+          .summary__main__progress = job.status.name
+
+        .row.summary__item__job
+          - j = 1
+          - result = 0
+          - job.tasks.each do |task|
+            .summary__job
+              .summary__job__number   = "#{ j }."
+              .summary__job__title    = task.name
+              .summary__job__contrib  = "#{ task.process } %"
+              .summary__job__progress = generate_summary_status(task)
+              .summary__job__result   = generate_summary_result(task)
+
+            - j += 1
+            - result += calculate_result(task)
+          .summary__result
+            .summary__result__text = t('job.result')
+            .summary__result__percentage
+              = "#{ result } %"
+
+      - final += calculate_final(result, job)
+      - i += 1
+
+    .summary__final
+      .summary__final__text = "#{ t('result') } :"
+      .summary__final__percentage = "#{ final } %"

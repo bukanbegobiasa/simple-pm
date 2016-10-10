@@ -22,7 +22,9 @@
         - else
           - @projects.each do |project|
             tr
-              td = link_to project.name, project
+              td
+                = link_to project.name, project
+                .g-project__status style="background-color:#{ generate_project_status_style(project) }"
               td = rupiah(project.price)
               td = indonesian_time(project.start_at)
               td = indonesian_time(project.finish_at)

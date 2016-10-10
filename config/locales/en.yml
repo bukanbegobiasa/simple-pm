@@ -22,14 +22,20 @@
 en:
   hello: "Hello world"
 
+  to:         To
   save:       Save
   back:       Back
   edit:       Edit
+  from:       From
   search:     Search
+  result:     Result
   update:     Update
   submit:     Submit
+  finish:     Finish
   expand:     Expand
+  process:    Process
   nothing:    Nothing to show
+  download:   Download
 
   home:
     why:            Why PM
@@ -134,6 +140,7 @@ en:
     detail:           Details
     member:           Members
     finish:           Finish
+    summary:          Summary
     nothing:          Nothing to show
     overview:         Overview
     description:      Description
@@ -152,6 +159,7 @@ en:
     title:              Job Title
     assign:             Assign
     status:             Status
+    result:             Job Result
     delete:             Delete
     add_user:           Add User
     start_at:           Start At
@@ -159,6 +167,7 @@ en:
     finish_at:          Finish At
     milestone:          Milestone
     unassigned:         Unassigned
+    contribute:         This task contribute to project (%)
     description:        Description
     caption_edit:       Edit Job
     change_status:      Change Status
@@ -171,7 +180,10 @@ en:
   task:
     name:             Name
     number:           No
+    process:          Proccess
     nothing:          Nothing to show
+    start_at:         Start At
+    finish_at:        Finish At
     preambule:        Add New Task
     description:      Description
 

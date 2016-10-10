@@ -37,14 +37,12 @@
           .g-job__description__content
             = @job.status.name
             = render 'generate_status'
-        /.g-job__half.g-job__items
-        /  .g-job__description__title
-        /    strong = t('job.milestone')
-        /  .g-job__description__content
-        /    .g-job__description__content__value
-        /      = @job.milestone
-        /    .g-job__description__content__opt
-        /      = generate_milestone(@job)
+        .g-job__half
+          .g-job__description__title
+            strong = t('job.contribute')
+          .g-job__description__content
+            = "#{ @job.percent } %"
+      .g-job
         .g-job__half
           .g-job__description__title
             strong = t('job.assign')
@@ -53,13 +51,12 @@
             = assigned @job
             .form#new_assignment style="display:none"
               = render 'user_jobs/form' if is_created(@job)
-      /.g-job
 
     hr style="width:95%; margin-left: auto; margin-right: auto;"
 
     .p-bottom
       .g-task
-        - if @project.is_management? current_user.id
+        - if @job.owned current_user.id or @project.is_management? current_user.id
           .g-task__flag-new
             .g-task__flag-new__title
               h4 style="margin:0" = t('task.preambule')

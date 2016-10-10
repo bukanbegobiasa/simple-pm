@@ -8,8 +8,8 @@
     .g-tab
       header style="padding-bottom:8px"
         ul
-          li.active#overview
-            a = t('project.overview')
+          li#overview
+            = link_to t('project.overview'), project_path(@project)
           li#detail
             = link_to t('project.detail'), project_detail_path(@project)
           li#job
@@ -17,8 +17,12 @@
           li#users
             = link_to t('project.member'), project_user_projects_path(@project)
           - if @project.is_management? current_user.id
-            li#summary
-              = link_to t('project.summary'), project_summary_path(@project)
+            li.active#summary
+              a = t('project.summary')
       section.main
-        .panel.active#overview
-          | Overview
+        .panel.active#summary
+          .summary__row
+            .summary__right
+              = link_to t('download'), project_summary_path(@project, :pdf), class: 'g-user_project__button_new'
+          .summary__row style="border: 1px solid rgba(0, 0, 0, .5);padding-top: 24px;"
+            = render 'pdf'

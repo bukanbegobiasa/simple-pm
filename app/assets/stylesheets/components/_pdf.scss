@@ -1,0 +1,127 @@
+.summary{
+
+  &__title{
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  &__main{
+    @include row();
+    padding: 14px 20px;
+
+    &__number{
+      @include span-columns(.5);
+      font-weight: 600;
+    }
+
+    &__title{
+      @include span-columns(7.5);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &__contrib, &__progress{
+      @include span-columns(1);
+      font-weight: 600;
+    }
+
+    &__result{
+      @include span-columns(2);
+    }
+  }
+
+  &__item{
+    @include row();
+    margin-bottom: 24px;
+
+    &__job{
+      @include row();
+      padding-top: 32px;
+      @include shift(.5);
+    }
+  }
+
+  &__job{
+    @include row();
+
+    &__number{
+      @include span-columns(.5);
+    }
+
+    &__title{
+      @include span-columns(8.3);
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    &__contrib, &__progress{
+      @include span-columns(1);
+      text-align: right;
+    }
+
+    &__result{
+      @include span-columns(1.2);
+      text-align: right;
+    }
+  }
+
+  &__result{
+    margin-top: 8px;
+    border-top: 1px solid $black;
+
+    &__percentage{
+      @include shift(6);
+      @include span-columns(3);
+      text-align: right;
+    }
+    &__text{
+      @include span-columns(3);
+    }
+  }
+
+  &__right{
+    @include shift(10);
+    @include span-columns(2);
+  }
+
+  &__row{
+    @include row();
+    margin-bottom: 12px;
+  }
+
+  &__description{
+    @include row();
+    width: 200px;
+    margin: 0 auto;
+
+    &__caption{
+      @include span-columns(4);
+      text-align: right;
+    }
+
+    &__value{
+      @include shift(1);
+      @include span-columns(7);
+      font-weight: 600;
+    }
+  }
+
+  &__final{
+    @include row();
+    margin-top: 44px;
+
+    &__text{
+      @include shift(8);
+      @include span-columns(2);
+      font-size: 16px;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    &__percentage{
+      @include span-columns(2);
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}

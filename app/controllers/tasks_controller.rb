@@ -10,6 +10,19 @@ class TasksController < ApplicationController
   def show
   end
 
+  def finish
+    @task = Task.find(params[:task_id])
+    respond_to do |format|
+      if @task.update_columns(status: true)
+        format.html { redirect_to project_job_path(@project, @task.job), notice: t('success.task.update') }
+        format.json { render :show, status: :ok, location: @task }
+      else
+        format.html { render :edit }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def new
     @task = Task.new
   end
@@ -66,6 +79,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:job_id, :name, :description, :status, :created_by)
+      params.require(:task).permit(:job_id, :name, :description, :status, :created_by, :start_at, :finish_at, :process)
     end
 end

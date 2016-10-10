@@ -16,6 +16,9 @@
             = link_to t('project.job'), project_jobs_path(@project)
           li.active#users
             a = t('project.member')
+          - if @project.is_management? current_user.id
+            li#summary
+              = link_to t('project.summary'), project_summary_path(@project)
       section.main
         .panel.active#detail
           - if @project.owner?(current_user)

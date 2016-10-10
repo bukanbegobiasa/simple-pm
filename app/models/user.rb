@@ -22,8 +22,16 @@ class User < ActiveRecord::Base
   validates :gender, presence: true, inclusion: { in: [true, false] }
 
   scope :search_user, ->(term){
-      where('email LIKE ? OR username LIKE ?', "%#{ term }%", "%#{ term }%")
+    where('email LIKE ? OR username LIKE ?', "%#{ term }%", "%#{ term }%")
   }
+
+  def all_jobs project
+    if project.is_management? self.id
+      project.jobs
+    else
+      self.jobs.where("project_id = ?", project.id)
+    end
+  end
 
   private
   def assign_initial_value

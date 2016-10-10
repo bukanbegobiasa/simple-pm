@@ -21,6 +21,21 @@
       = f.label :description, t('form.task.description')
     .g-task__new__field
       = f.text_area :description
+  .g-row.g-task__new
+    .g-task__new__label
+      = f.label :process, t('job.contribute')
+    .g-task__new__field
+      = f.text_field :process
+  .g-row.g-task__new
+    .g-task__new__label
+      = f.label :start_at
+    .g-task__new__field
+      = f.date_field :start_at
+  .g-row.g-task__new
+    .g-task__new__label
+      = f.label :finish_at
+    .g-task__new__field
+      = f.date_field :finish_at
   .g-row.g-task__new#submit_button
     .g-task__new__label
     .g-task__new__field

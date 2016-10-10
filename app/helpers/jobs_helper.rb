@@ -58,6 +58,34 @@ module JobsHelper
   end
 
   def new_task_link user
-    return link_to t('expand'), root_url, class: "g-task__flag-new__action__button", onclick: "toogle_new_task(); return false;" if @project.is_management? user.id
+    return link_to t('expand'), root_url, class: "g-task__flag-new__action__button", onclick: "toogle_new_task(); return false;"
+  end
+
+  def generate_task_status task
+    text = t('process')
+    text = t('finish') if task.status
+    text
+  end
+
+  def generate_job_status_style job
+    now = Date.today
+    end_date = job.finish_at.to_date
+    result = (end_date - now).to_i
+
+    if result <= 3
+      text = '#CE1010'
+    elsif result <= 6
+      text = '#E5A329'
+    elsif result <= 9
+      text = '#D5D81E'
+    else
+      text = '#49AD35'
+    end
+
+    if job.job_status_id > 3
+      text = '#287BEF'
+    end
+
+    return text
   end
 end

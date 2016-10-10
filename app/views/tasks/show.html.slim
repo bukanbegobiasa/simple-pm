@@ -17,3 +17,20 @@
         = t('task.description')
       .g-task__content
         = htmlize(@task.description)
+    .g-task style="margin-top:20px"
+      .g-task__label
+        = t('task.start_at')
+      .g-task__content
+        = indonesian_time(@task.start_at)
+    .g-task style="margin-top:20px"
+      .g-task__label
+        = t('task.finish_at')
+      .g-task__content
+        = indonesian_time(@task.finish_at)
+    .g-task style="margin-top:20px; margin-bottom: 20px"
+      .g-task__label
+        = t('task.process')
+      .g-task__content
+        = task_status_info(@task)
+        .g-task__content__action
+          = task_status_action(@task)

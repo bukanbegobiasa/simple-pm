@@ -1,10 +1,10 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, :authenticate_project!
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :new_job, only: [:index, :new, :search]
 
   def index
-    @job = Job.new
-    @jobs = Job.eager_load(:activity).where(project_id: params[:project_id])
+    @jobs = current_user.all_jobs(@project)
   end
 
   def show
@@ -17,11 +17,9 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = Job.new
   end
 
   def search
-    @job = Job.new
     @jobs = Job.eager_load(:activity).search_jobs(job_params)
     render 'index'
   end
@@ -33,11 +31,6 @@ class JobsController < ApplicationController
   def status
     @job = Job.eager_load(:project, :activity).find(params[:job_id])
     @status = JobStatus.be_array
-    render layout: false
-  end
-
-  def milestone
-    @job = Job.eager_load(:project, :activity).find(params[:job_id])
     render layout: false
   end
 
@@ -93,11 +86,16 @@ class JobsController < ApplicationController
   end
 
   private
+
+    def new_job
+      @job = Job.new
+    end
+
     def set_job
       @job = Job.eager_load(:project, :activity).find(params[:id])
     end
 
     def job_params
-      params.require(:job).permit(:project_id, :title, :description, :start_at, :finish_at, :milestone, :rate, :status, :active)
+      params.require(:job).permit(:project_id, :title, :description, :start_at, :finish_at, :milestone, :rate, :status, :active, :percent)
     end
 end

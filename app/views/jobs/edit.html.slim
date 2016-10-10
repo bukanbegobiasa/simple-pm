@@ -26,6 +26,11 @@
             = f.text_area :description
         .g-row.g-job__new
           .g-job__new__label
+            = f.label :percent, t('job.contribute')
+          .g-job__new__field
+            = f.text_field :percent
+        .g-row.g-job__new
+          .g-job__new__label
             = f.label :start_at
           .g-job__new__field
             = f.date_field :start_at

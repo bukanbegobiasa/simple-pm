@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622205323) do
+ActiveRecord::Schema.define(version: 20161004155155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20160622205323) do
     t.text     "description",   default: "",   null: false
     t.datetime "start_at",                     null: false
     t.datetime "finish_at",                    null: false
-    t.integer  "milestone",     default: 0,    null: false
     t.integer  "rate",          default: 0,    null: false
+    t.integer  "percent"
     t.integer  "job_status_id"
     t.boolean  "active",        default: true, null: false
     t.datetime "created_at",                   null: false
@@ -69,12 +69,16 @@ ActiveRecord::Schema.define(version: 20160622205323) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "job_id"
-    t.string   "name",        default: "",   null: false
-    t.string   "description", default: "",   null: false
-    t.boolean  "status",      default: true, null: false
-    t.integer  "created_by",                 null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "name",        default: "",    null: false
+    t.boolean  "status",      default: false, null: false
+    t.string   "description", default: "",    null: false
+    t.integer  "process"
+    t.datetime "start_at",                    null: false
+    t.datetime "finish_at",                   null: false
+    t.integer  "created_by",                  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "active",      default: true
   end
 
   add_index "tasks", ["job_id"], name: "index_tasks_on_job_id", using: :btree

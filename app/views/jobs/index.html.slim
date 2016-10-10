@@ -16,22 +16,25 @@
             a = t('project.job')
           li#users
             = link_to t('project.member'), project_user_projects_path(@project)
+          - if @project.is_management? current_user.id
+            li#summary
+              = link_to t('project.summary'), project_summary_path(@project)
       section.main
         .panel.active#detail
           - if @project.owner?(current_user) or @project.manager?(current_user)
             = render 'new'
-          .g-jobs__search
+          .g-jobs__search style="margin-top:24px"
             = render 'search'
           section.g-jobs-list style="padding-top:0"
             table
               thead
                 tr
-                  th Title
+                  th width='250px' Title
                   th Description
-                  th Assign at
-                  th Progress
-                  th Start At
-                  th Finish At
+                  th width='100px' Assign at
+                  th width='80px' Progress
+                  th width='100px' Start At
+                  th width='100px' Finish At
               tbody
                 - if @jobs.blank?
                   tr
@@ -39,8 +42,11 @@
                 - else
                   - @jobs.each do |job|
                     tr
-                      td = link_to job.title.truncate(30), project_job_path(@project, job)
-                      td = job.description.truncate(30)
+                      td
+                        = link_to job.title.truncate(30), project_job_path(@project, job)
+                        .g-project__status style="background-color:#{ generate_job_status_style(job) }"
+
+                      td = job.description.html_safe
                       td = user_assignment(job)
                       td = "#{job.rate} %"
                       td = indonesian_time(job.start_at)

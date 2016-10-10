@@ -61,7 +61,8 @@
       @include row();
 
       &__text{
-        @include span-columns(10);
+        @include shift(1);
+        @include span-columns(9);
       }
 
       &__action{
@@ -127,6 +128,25 @@
           background-color: shade($action-color, 20%);
         }
       }
+    }
+  }
+
+  &__search{
+    @include row();
+
+    &__label{
+      @include span-columns(1.5);
+      text-align: right;
+      padding-top: 4px;
+    }
+
+    &__submit{
+      @include span-columns(1.5);
+      text-align: left;
+    }
+
+    &__field{
+      @include span-columns(9);
     }
   }
 }

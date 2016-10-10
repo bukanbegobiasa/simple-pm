@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :detail]
+  before_action :set_project, except: [:index, :new, :create]
   before_action :is_belongs_to_project?, only: [:show]
 
   def index
@@ -12,6 +12,19 @@ class ProjectsController < ApplicationController
   end
 
   def detail
+  end
+
+  def summary
+    @jobs = @project.jobs.order("created_at ASC")
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render  pdf:      "#{ @project.name.parameterize }_#{ Time.now.strftime('%Y-%m-%d') }",
+                layout:   "pdf",
+                template: "projects/_pdf.html.slim"
+      end
+    end
   end
 
   def new

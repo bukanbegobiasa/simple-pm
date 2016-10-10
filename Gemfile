@@ -4,8 +4,8 @@ gem 'rails',                  '4.2.6'
 gem 'pg',                     '~> 0.15'
 gem 'sass-rails',             '5.0.4'
 gem 'jquery-rails',           '4.1.1'
-gem 'turbolinks',             :github => 'rails/turbolinks',
-                              :branch => 'master'
+gem 'turbolinks',             github: 'rails/turbolinks',
+                              branch: 'master'
 gem 'jbuilder',               '2.4.1'
 gem 'kaminari',               '0.17.0'
 gem 'devise',                 '3.4.1'
@@ -15,6 +15,8 @@ gem 'neat',                   '1.7.4'
 gem 'bitters',                '1.3.1'
 gem 'slim',                   '3.0.7'
 gem 'unicorn'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'carrierwave',            git: 'http://github.com/carrierwaveuploader/carrierwave',
                               ref: 'de2a9550dadf5d71563e933d583ba8c3ad6bb101'
 

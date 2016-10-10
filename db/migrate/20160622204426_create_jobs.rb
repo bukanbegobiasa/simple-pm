@@ -6,8 +6,8 @@ class CreateJobs < ActiveRecord::Migration
       t.text :description,      null: false,  default: ""
       t.datetime :start_at,     null: false
       t.datetime :finish_at,    null: false
-      t.integer :milestone,     null: false,  default: 0
       t.integer :rate,          null: false,  default: 0
+      t.integer :percent
       t.belongs_to :job_status, index: true,  foreign_key: true, name: 'status_id'
       t.boolean :active,        null: false,  default: true
 
