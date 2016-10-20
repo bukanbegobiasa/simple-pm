@@ -14,6 +14,11 @@ class Project < ActiveRecord::Base
     return self.where(id: project_id).present?
   end
 
+  def include_users
+    user = self.user_projects.where("role_id != ?", 1).map{|u| u.user_id }
+    self.users.where(id: user)
+  end
+
   def is_management?(user)
     roles = Role.management
     return self.user_projects.where(role_id: roles, user_id: user).present?
@@ -26,6 +31,10 @@ class Project < ActiveRecord::Base
 
   def save_all(user)
     self.save and UserProject.create_new({project_id: self.id, user_id: user.id })
+  end
+
+  def owner
+    self.user_projects.find_by(role_id: 1).user.fullname
   end
 
   def owner?(user)

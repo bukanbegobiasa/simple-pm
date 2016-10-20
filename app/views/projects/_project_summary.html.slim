@@ -11,6 +11,9 @@
     .summary__description
       .summary__description__caption = "#{ t('to') } :"
       .summary__description__value = indonesian_time(@project.finish_at)
+    .summary__description
+      .summary__description__caption = "#{ t('project.price') } :"
+      .summary__description__value = rupiah @project.price
 
   .summary__main
     - i = 1
@@ -20,8 +23,10 @@
         .row
           .summary__main__number   = "#{ i }."
           .summary__main__title    = job.title
-          .summary__main__contrib  = "#{ job.percent } %"
-          .summary__main__progress = job.status.name
+          .summary__main__pic
+            - job.user.each do |user|
+              .row
+                strong = user.fullname
 
         .row.summary__item__job
           - j = 1
@@ -37,9 +42,18 @@
             - j += 1
             - result += calculate_result(task)
           .summary__result
-            .summary__result__text = t('job.result')
-            .summary__result__percentage
-              = "#{ result } %"
+            .row
+              .summary__result__text = t('job.result')
+              .summary__result__percentage
+                = "#{ result } %"
+            .row
+              .summary__result__text = t('job.contribute')
+              .summary__result__percentage
+                strong = "#{ job.percent } %"
+            .row
+              .summary__result__text = t('job.status')
+              .summary__result__percentage
+                strong = job.status.name
 
       - final += calculate_final(result, job)
       - i += 1
@@ -47,3 +61,6 @@
     .summary__final
       .summary__final__text = "#{ t('result') } :"
       .summary__final__percentage = "#{ final } %"
+    .summary__final
+      .summary__final__signature = t('master.role.owner')
+      .summary__final__owner = "#{ @project.owner }"

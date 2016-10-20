@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   root 'projects#index'
   get 'styleguide'                => 'styleguides#index',   as: :styleguide
   get 'projects/:id/detail'       => 'projects#detail',     as: :project_detail
-  get 'projects/:id/summary'      => 'projects#summary',    as: :project_summary
   get 'users/search/:project_id'  => 'users#search',        as: :user_search
   get 'user/:user_id'             => 'users#show',          as: :user_show
+
+  get 'projects/:id/summary/user' => 'projects#user_summary',     as: :user_summary
+  get 'projects/:id/summary'      => 'projects#project_summary',  as: :project_summary
 
   resources :projects do
     resources :jobs do

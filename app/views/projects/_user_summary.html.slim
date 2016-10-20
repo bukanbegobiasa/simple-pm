@@ -1,0 +1,37 @@
+.summary
+  .row
+    .summary__date style="text-align: right; padding-right: 24px;"
+      = indonesian_time(Time.now)
+  .summary__title
+    h3 = t('user_and_project')
+  .summary__main
+    - i = 0
+    - @users.each do |user|
+      - i += 1
+      .row.summary__item
+        .row
+          .summary__main__number    ="#{ i }."
+          .summary__main__title     = user.fullname
+          .summary__main__pic       = user.email
+
+        - user.projects.each do |project|
+          .row.summary__item style="padding-top: 28px"
+            h4 = project.name
+
+            .row.user
+              - j = 0
+              - user.jobs.my_work(project.id).each do |job|
+                - j += 1
+                .user__job
+                  .user__job__number = "#{ j }."
+                  .user__job__field  = job.title
+                  .user__job__status = job.status.name
+
+                .user__job
+                  strong = "List Task"
+
+                - job.tasks.each do |task|
+                  .user__job__task
+                    .user__job__task__notation  = "-"
+                    .user__job__task__field     = task.name
+                    .user__job__task__status    = generate_summary_status(task)

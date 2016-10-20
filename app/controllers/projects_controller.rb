@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   def detail
   end
 
-  def summary
+  def project_summary
     @jobs = @project.jobs.order("created_at ASC")
 
     respond_to do |format|
@@ -22,7 +22,20 @@ class ProjectsController < ApplicationController
       format.pdf do
         render  pdf:      "#{ @project.name.parameterize }_#{ Time.now.strftime('%Y-%m-%d') }",
                 layout:   "pdf",
-                template: "projects/_pdf.html.slim"
+                template: "projects/_project_summary.html.slim"
+      end
+    end
+  end
+
+  def user_summary
+    @users = User.all
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render  pdf:      "#{ @project.name.parameterize }_users_#{ Time.now.strftime('%Y-%m-%d')}",
+                layout:   "pdf",
+                template: "projects/_user_summary.html.slim"
       end
     end
   end

@@ -1,5 +1,7 @@
 class Job < ActiveRecord::Base
   before_save :ensure_job_status_has_value, only: :create
+  before_save :check_percentage
+
   after_initialize :ensure_job_is_active
 
   before_save :replace_newlines
@@ -37,6 +39,10 @@ class Job < ActiveRecord::Base
 
   scope :search_jobs, ->(project){
     where("project_id = ? AND title LIKE ?", project[:project_id], "%#{ project[:title] }%")
+  }
+
+  scope :my_work, ->(project_id){
+    where(project_id: project_id)
   }
 
   def activities
@@ -105,6 +111,15 @@ class Job < ActiveRecord::Base
 
   def replace_newlines
     self.description.gsub!(/\r\n/, "<br />")
+  end
+
+  def check_percentage
+    percent = self.percent
+    self.project.jobs.each do |job|
+      percent += job.percent
+    end
+
+    return percent <= 100
   end
 
 end

@@ -1,0 +1,36 @@
+.g-card.g-project
+  header
+    h2
+      = @project.name
+      small
+        = t('project.description')
+  section style="padding:0"
+    .g-tab
+      header style="padding-bottom:8px"
+        ul
+          li#overview
+            = link_to t('project.overview'), project_path(@project)
+          li#detail
+            = link_to t('project.detail'), project_detail_path(@project)
+          li#job
+            = link_to t('project.job'), project_jobs_path(@project)
+          li#users
+            = link_to t('project.member'), project_user_projects_path(@project)
+          - if @project.is_management? current_user.id
+            li.active#summary
+              a = t('project.summary')
+      section.main
+        .panel.active#summary
+          .g-tab
+            header style="padding: 0 0 0 8px; background: transparent;"
+              ul
+                li.active#overview
+                  a = t('project.summary_project')
+                li#detail
+                  = link_to t('project.summary_user'), user_summary_path(@project)
+          .panel.active#summary_project
+            .summary__row
+              .summary__right
+                = link_to t('download'), project_summary_path(@project, :pdf), class: 'g-user_project__button_new', style: "margin-top: 12px;"
+            .summary__row style="border: 1px solid rgba(0, 0, 0, .5);padding-top: 24px;"
+              = render 'project_summary'

@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def define_role id
+    self.user_projects.where(project_id: id).first.role.name
+  end
+
   private
   def assign_initial_value
     self.initial = username[0..2].upcase

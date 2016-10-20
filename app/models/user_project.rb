@@ -34,7 +34,15 @@ class UserProject < ActiveRecord::Base
     end
   end
 
+  def owner
+    self.find_by(role_id: 1).user
+  end
+
   def self.auth?(user, role)
     return self.find_by(user_id: user, role_id: role).present?
+  end
+
+  def define_role id
+    self.where(project_id: id).first.role.name
   end
 end

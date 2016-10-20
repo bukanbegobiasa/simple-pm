@@ -15,13 +15,14 @@
     }
 
     &__title{
-      @include span-columns(7.5);
+      @include span-columns(8.5);
       font-size: 14px;
       font-weight: 600;
     }
 
-    &__contrib, &__progress{
-      @include span-columns(1);
+    &__pic{
+      @include span-columns(3);
+      font-size: 14px;
       font-weight: 600;
     }
 
@@ -36,8 +37,29 @@
 
     &__job{
       @include row();
-      padding-top: 32px;
+      padding-top: 56px;
       @include shift(.5);
+    }
+
+    h4{
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+      @include shift(.5);
+    }
+
+    &__result{
+      @include span-columns(6);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &__value{
+      @include shift(3);
+      @include span-columns(3);
+      font-size: 14px;
+      font-weight: 600;
     }
   }
 
@@ -50,7 +72,7 @@
 
     &__title{
       @include span-columns(8.3);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 400;
     }
 
@@ -70,12 +92,11 @@
     border-top: 1px solid $black;
 
     &__percentage{
-      @include shift(6);
       @include span-columns(3);
       text-align: right;
     }
     &__text{
-      @include span-columns(3);
+      @include span-columns(9);
     }
   }
 
@@ -91,7 +112,7 @@
 
   &__description{
     @include row();
-    width: 200px;
+    width: 275px;
     margin: 0 auto;
 
     &__caption{
@@ -111,17 +132,74 @@
     margin-top: 44px;
 
     &__text{
-      @include shift(8);
-      @include span-columns(2);
+      @include shift(9);
+      @include span-columns(1.75);
       font-size: 16px;
       font-weight: 600;
       text-align: right;
     }
 
     &__percentage{
-      @include span-columns(2);
+      @include span-columns(1.25);
       font-size: 16px;
       font-weight: 600;
+    }
+
+    &__signature, &__owner{
+      @include shift(9);
+      @include span-columns(3);
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    &__owner{
+      padding-top: 60px;
+    }
+  }
+
+  &__task{
+    @include shift(.5);
+  }
+}
+
+.user{
+  @include row();
+  @include shift(.5);
+
+  &__job{
+    @include row();
+    padding: 12px 0;
+
+    &__number{
+      @include span-columns(.5);
+    }
+
+    &__field{
+      @include span-columns(9);
+    }
+
+    &__status{
+      @include span-columns(2.5);
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    &__task{
+      @include row();
+
+      &__notation{
+        @include span-columns(.5);
+      }
+
+      &__field{
+        @include span-columns(9);
+      }
+
+      &__status{
+        @include span-columns(2.5);
+        font-weight: 600;
+      }
     }
   }
 }

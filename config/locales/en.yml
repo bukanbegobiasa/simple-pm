@@ -37,6 +37,8 @@ en:
   nothing:    Nothing to show
   download:   Download
 
+  user_and_project: List all users
+
   home:
     why:            Why PM
     features:       Features
@@ -144,6 +146,8 @@ en:
     nothing:          Nothing to show
     overview:         Overview
     description:      Description
+    summary_user:     Summary User
+    summary_project:  Summary Project
 
   user_project:
     new_title:            Add user to this project
