@@ -14,6 +14,11 @@ class Project < ActiveRecord::Base
     return self.where(id: project_id).present?
   end
 
+  def self.create_new(params, user)
+    params[:price].remove!('.').remove(',')
+    self.create!(params)
+  end
+
   def include_users
     user = self.user_projects.where("role_id != ?", 1).map{|u| u.user_id }
     self.users.where(id: user)
@@ -53,9 +58,10 @@ class Project < ActiveRecord::Base
     self.user_projects.where(user_id: user).present?
   end
 
-  def participants
+  def job_participants(job)
     roles = Role.not_management
-    user_ids = self.user_projects.where(role_id: roles).map{ |user| user.user_id }
+    project_partisipants = self.user_projects.where(role_id: roles).map{ |user| user.user_id }
+    user_ids = project_partisipants - job.user.ids
 
     if user_ids.blank?
       user = [[ "not_assigned", 0 ]]

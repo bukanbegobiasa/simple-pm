@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
       get   'milestone'       => 'jobs#milestone'
       get   'status'          => 'jobs#status'
+      get   'search_user'     => 'jobs#search_user'
       put   'status'          => 'jobs#update_status'
       patch 'status'          => 'jobs#update_status'
     end

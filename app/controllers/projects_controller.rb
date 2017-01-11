@@ -50,10 +50,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.create_new(project_params, current_user)
 
     respond_to do |format|
-      if @project.save_all current_user
+      if create_user_project_association(@project, current_user)
         format.html { redirect_to root_path, notice: t('success.project.create') }
         format.json { render :show, status: :created, location: @project }
       else
@@ -90,5 +90,9 @@ class ProjectsController < ApplicationController
 
     def project_params
       params.require(:project).permit(:name, :price, :start_at, :finish_at, :active)
+    end
+
+    def create_user_project_association(project, user)
+      UserProject.create!(user_id: user.id, project_id: project.id, role_id: 1)
     end
 end

@@ -13,7 +13,7 @@ class JobsController < ApplicationController
     @user_job = UserJob.new
     @job_activity = JobActivity.new
     @job_activities = @job.activities
-    @list_users = @project.participants
+    @list_users = @project.job_participants(@job)
   end
 
   def new
@@ -22,6 +22,22 @@ class JobsController < ApplicationController
   def search
     @jobs = Job.eager_load(:activity).search_jobs(job_params)
     render 'index'
+  end
+
+  def search_user
+    @job = Job.find(params[:job_id])
+    excluded_user = @job.user.map{ |u| u.id }
+    term = params[:search][:term]
+    result = User.search_user(term).map{ |u| u.id }
+    user_ids = result - excluded_user
+
+    if user_ids.blank?
+      user = [[ "not_assigned", 0 ]]
+    else
+      user = User.find(user_ids)
+    end
+
+    render json: user
   end
 
   def edit

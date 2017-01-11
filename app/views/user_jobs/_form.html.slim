@@ -9,7 +9,50 @@
     = f.button :submit
 
 javascript:
+
+  function formatRepoSelection (repo) {
+    if (repo.username == undefined && repo.email == undefined) return '#{ t("user_project.email_placeholder") }';
+    return "<option id="+ repo.id +">" + repo.username + " [ " + repo.email + " ] </option>";
+  }
+
+  function formatRepo (repo) {
+    if (repo.loading) return repo.text;
+    var markup = "<div class='select2-result-repository clearfix'>" +
+       "<div class='select2-result-repository__avatar'><strong>"+ repo.username +"</strong></div>" +
+       "<div class='select2-result-repository__meta'>" +
+       "<div class='select2-result-repository__title'>" + repo.email + "</div>";
+       "</div></div>";
+    return markup;
+  }
+
   $('#user_job_user_id').select2({
+    ajax: {
+     url: "#{project_job_search_user_path(@project, @job)}",
+      dataType: 'json',
+      delay: 500,
+      data: function (search) {
+        return {
+          search: search
+        };
+      },
+      processResults: function (data) {
+        $('select2-user_project_user_id-container')
+        return {
+          results: $.map(data, function(item){
+            return {
+              username: item.username,
+              email: item.email,
+              id: item.id
+            }
+          })
+        };
+      },
+      cache: true
+    },
+    escapeMarkup: function (markup) { return markup; },
+    minimumInputLength: 3,
+    templateResult: formatRepo,
+    templateSelection: formatRepoSelection,
     placeholder: '#{ t("user_project.role_placeholder") }',
     allowClear: true
   });

@@ -23,17 +23,6 @@ class UserProject < ActiveRecord::Base
     user_project.save
   end
 
-  def save
-    check = UserProject.find_by(user_id: self.user_id,
-                               project_id: self.project_id).blank?
-
-    if check
-      super
-    else
-      check
-    end
-  end
-
   def owner
     self.find_by(role_id: 1).user
   end

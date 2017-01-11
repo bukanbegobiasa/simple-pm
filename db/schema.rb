@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004155155) do
+ActiveRecord::Schema.define(version: 20160622205323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,13 +51,14 @@ ActiveRecord::Schema.define(version: 20161004155155) do
   add_index "jobs", ["project_id"], name: "index_jobs_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.string   "price",      default: "0",  null: false
-    t.datetime "start_at",                  null: false
-    t.datetime "finish_at",                 null: false
-    t.boolean  "active",     default: true, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",                          null: false
+    t.string   "price"
+    t.datetime "start_at",                      null: false
+    t.datetime "finish_at",                     null: false
+    t.datetime "real_finish_at"
+    t.boolean  "active",         default: true, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -69,16 +70,16 @@ ActiveRecord::Schema.define(version: 20161004155155) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "job_id"
-    t.string   "name",        default: "",    null: false
-    t.boolean  "status",      default: false, null: false
-    t.string   "description", default: "",    null: false
+    t.string   "name",        default: "",   null: false
+    t.boolean  "status",                     null: false
+    t.boolean  "active",      default: true, null: false
+    t.string   "description", default: "",   null: false
     t.integer  "process"
-    t.datetime "start_at",                    null: false
-    t.datetime "finish_at",                   null: false
-    t.integer  "created_by",                  null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "active",      default: true
+    t.datetime "start_at",                   null: false
+    t.datetime "finish_at",                  null: false
+    t.integer  "created_by",                 null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "tasks", ["job_id"], name: "index_tasks_on_job_id", using: :btree
